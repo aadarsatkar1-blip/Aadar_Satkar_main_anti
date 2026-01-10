@@ -1,0 +1,424 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Destinations - Aadar Satkar</title>
+            <meta name="description" content="Plan your perfect trip with Aadar Satkar. We offer customized tour packages, luxury travel planning, and unforgettable experiences in Maldives, Dubai, and more.">
+    <meta name="keywords" content="travel, tour packages, holiday planning, Aadar Satkar, vacation, trip planner">
+    <meta name="author" content="Aadar Satkar Team">
+    <!-- 4. Favicon (Browser Tab Icon) -->
+    <!-- Apni image ka path sahi lagana -->
+
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        /* Hero Section Specific to India */
+        .europe-hero {
+            height: 60vh;
+            /* India Hero Image (Taj Mahal) */
+            background-image: url('{% static 'images/India.jpg' %}');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .europe-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .europe-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .europe-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .europe-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            background: white;
+            color: #333;
+        }
+
+        /* Destinations Grid */
+        .europe-destinations {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 50px;
+        }
+
+        /* Fix for "Extra" dropdown on Desktop */
+        @media screen and (min-width: 769px) {
+            .nav-menu .dropdown:last-child .dropdown-content {
+                left: auto;
+                right: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" style="background: rgb(0, 0, 0); box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo">
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                
+                <li class="dropdown">
+                    <a href="#destination" class="dropbtn">Destination </a>
+                    <div class="dropdown-content">
+                    <div class="dropdown-content">
+                        <a href="{% url 'bali' %}">Bali</a>
+                        <a href="{% url 'maldives' %}">Maldives</a>
+                        <a href="{% url 'india' %}">India</a>
+                        <a href="{% url 'view_all_destinations' %}">Explore All</a>
+                    </div>
+                </li>        
+              
+                <li class="dropdown">
+                    <a href="#holidays" class="dropbtn">Holidays </a>
+                    <div class="dropdown-content">
+               <a href="{% url 'spain' %}">Switzerland</a>
+               <a href="{% url 'italy' %}">Italy</a>
+               <a href="{% url 'spain' %}">Spain</a>
+                    </div>
+                </li> 
+              
+                <li class="dropdown">
+                    <a href="#destination" class="dropbtn">India </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'india' %}">Jaipur</a>
+                        <a href="{% url 'india' %}">Kerala</a>
+                        <a href="{% url 'india' %}">Goa</a>
+                        <a href="{% url 'india' %}">Explore All</a>
+                    </div>
+                </li>              
+
+                <li class="dropdown">
+                    <a href="#destination" class="dropbtn">Extra </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'weddings' %}">Weddings</a>
+                        <a href="{% url 'student_tour' %}">Student's tour</a>
+                        <a href="{% url 'medical_tourism' %}">Medical tourism</a>
+                    </div>
+                </li> 
+                
+                <li>
+                     <a href="#contact" class="dropbtn">Contact</a>
+                </li>
+                  
+                <li><a href="{% url 'plan_your_trip' %}" class="btn-primary">Plan Your Trip</a></li>
+            </ul>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="europe-hero">
+        <div class="europe-hero-content">
+            <h1>Incredible India</h1>
+            <p>A land of vibrant culture, ancient heritage, and breathtaking landscapes</p>
+            <a href="{% url 'view_all_destinations' %}" class="back-btn">← Back</a>
+        </div>
+    </section>
+
+    <section class="europe-destinations">
+        <div class="container">
+            <h2 class="section-title">Indian Destinations</h2>
+            <p class="section-subtitle">From the snow-capped Himalayas to the tropical backwaters</p>
+
+            <div class="dest-grid">
+                
+                <div class="dest-card">
+                    <div class="dest-image"
+                        style="background-image: url('{% static 'images/Agra.jpg' %}');">        
+                        <span class="dest-label">Agra</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Taj Mahal</h3>
+                        <p>Witness the symbol of eternal love, one of the Seven Wonders of the World</p>
+                    </div>
+                </div>
+
+                <div class="dest-card">
+                    <div class="dest-image"
+                        style="background-image: url('{% static 'images/Jaipur.jpg' %}');">         
+                        <span class="dest-label">Jaipur</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Jaipur</h3>
+                        <p>The Pink City, home to the Hawa Mahal, Amer Fort, and royal palaces</p>
+                    </div>
+                </div>
+
+                <div class="dest-card">
+                    <div class="dest-image"
+                        style="background-image: url('{% static 'images/Kerala.jpg' %}');">        
+                        <span class="dest-label">Kerala</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Kerala Backwaters</h3>
+                        <p>God's Own Country – famous for houseboats, tea gardens, and Ayurveda</p>
+                    </div>
+                </div>
+
+                <div class="dest-card">
+                    <div class="dest-image"
+                        style="background-image: url('{% static 'images/Goa.jpg' %}');">         
+                        <span class="dest-label">Goa</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Goa</h3>
+                        <p>Sun, sand, and sea – experience vibrant nightlife and Portuguese heritage</p>
+                    </div>
+                </div>
+
+                <div class="dest-card">
+                    <div class="dest-image"
+                        style="background-image: url('{% static 'images/Varanasi.jpg' %}');">        
+                        <span class="dest-label">Varanasi</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Varanasi</h3>
+                        <p>The spiritual capital of India, famous for its ancient Ghats and Ganga Aarti</p>
+                    </div>
+                </div>
+
+                <div class="dest-card">
+                    <div class="dest-image"
+                        style="background-image: url('{% static 'images/Ladakh.jpg' %}');">         
+                        <span class="dest-label">Ladakh</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Ladakh</h3>
+                        <p>A high-altitude desert with stunning lakes, monasteries, and mountain passes</p>
+                    </div>
+                </div>
+
+                <div class="dest-card">
+                    <div class="dest-image"
+                        style="background-image: url('{% static 'images/Mumbai.jpg' %}');">         
+                        <span class="dest-label">Mumbai</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Mumbai</h3>
+                        <p>The City of Dreams, featuring the Gateway of India and Marine Drive</p>
+                    </div>
+                </div>
+
+                <div class="dest-card">
+                    <div class="dest-image"
+                        style="background-image: url('{% static 'images/Hampi.jpg' %}');">         
+                        <span class="dest-label">Hampi</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Hampi</h3>
+                        <p>A UNESCO World Heritage site with magnificent ruins of the Vijayanagara Empire</p>
+                    </div>
+                </div>
+
+                <div class="dest-card">
+                    <div class="dest-image"
+                        style="background-image: url('{% static 'images/Darjeeling.jpg' %}');">        
+                        <span class="dest-label">Darjeeling</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Darjeeling</h3>
+                        <p>Famous for world-class tea, the Himalayan Railway, and views of Kanchenjunga</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+<!-- Footer -->
+<footer class="footer" id="contact">
+    <div class="container">
+
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Our Purpose</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Travel Resources</h4>
+                <ul>
+                    <li><a href="#">Trip Styles</a></li>
+                    <li><a href="#">Destinations</a></li>
+                    <li><a href="#">Travel Tips</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Booking Support</a></li>
+                    <li><a href="#">Feedback</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Get travel inspiration and exclusive deals</p>
+
+                <form class="newsletter-form" id="subscribeForm">
+                    <input 
+                        type="email"
+                        id="subscriberEmail"
+                        name="email"
+                        placeholder="Your email"
+                        required
+                    >
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+
+            <!-- Social Links -->
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+
+            <!-- Contact Buttons -->
+            <div class="contact-buttons">
+                <a href="tel:+917023030002" class="contact-link">📱 +91 7023030002</a>
+                <a href="mailto:aadarsatkar@gmail.com" class="contact-link">📧 Email</a>
+            </div>
+
+        </div>
+
+    </div>
+</footer>
+
+    <div id="itinerary-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close-btn">&times;</span>
+
+            <div id="modal-image" class="modal-hero-image"></div>
+
+            <div class="modal-header">
+                <h2 id="modal-title">Destination Title</h2>
+                <div class="modal-price" id="modal-price"></div>
+            </div>
+
+            <div id="itinerary-view">
+                <div class="modal-body">
+                    <h3>📅 Trip Itinerary</h3>
+                    <div id="modal-timeline" class="timeline"></div>
+
+                    <div class="modal-footer">
+                        <button id="customize-trip-btn" class="btn-primary-new">Customize This Trip</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="planning-form-view" class="hidden">
+                <div class="modal-body">
+                    <button id="back-to-itinerary-btn" class="btn-link">← Back to Itinerary</button>
+                    <h3>Plan Your Trip to <span id="form-destination-name">Destination</span></h3>
+
+                    <form id="trip-planning-form">
+                        <input type="hidden" id="destination-input" name="destination">
+                        <label>Your Name</label>
+                        <input type="text" name="name" required placeholder="John Doe">
+                        <label>Email Address</label>
+                        <input type="email" name="email" required placeholder="john@example.com">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" required placeholder="+91 7023030002">
+                        <label>Number of Travelers</label>
+                        <input type="number" name="travelers" min="1" value="2">
+                        <label>Approx. Travel Date</label>
+                        <input type="date" name="date">
+                        <label>Special Requests</label>
+                        <textarea name="message" rows="3" placeholder="Any specific needs or preferences?"></textarea>
+                        <button type="submit" class="btn-primary-new">Submit Request</button>
+                    </form>
+                    <div id="form-status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+       <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init("Awx8NRE5rPqxXJXvX"); 
+    </script>
+
+        <script type="module" src="{% static 'script.js' %}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,424 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Small Group Adventure Experts</title>
+        <meta name="description" content="Plan your perfect trip with Aadar Satkar. We offer customized tour packages, luxury travel planning, and unforgettable experiences in Maldives, Dubai, and more.">
+    <meta name="keywords" content="travel, tour packages, holiday planning, Aadar Satkar, vacation, trip planner">
+    <meta name="author" content="Aadar Satkar Team">
+
+
+    <!-- 4. Favicon (Browser Tab Icon) -->
+    <!-- Apni image ka path sahi lagana -->
+        <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <style>
+
+
+/* css for local based leaders page*/
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('{% static 'images/Small Group Experts.jpg' %}') center/cover;     
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #ff6b35;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+            cursor: pointer
+        }
+
+        .cta-button:hover {
+            background-color: #e55a2b;
+        }
+
+        /* Expertise Section */
+        .expertise {
+            padding: 80px 20px;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+      
+
+        /* Local Leaders Section */
+        .local-leaders {
+            padding: 80px 20px;
+            background-color: #fff;
+        }
+
+        .local-leaders .section-title {
+            color: #2c3e50;
+        }
+
+        .local-leaders .section-subtitle {
+            color: #555;
+            font-size: 1.3rem;
+            max-width: 900px;
+            margin: 0 auto 60px;
+        }
+
+        .leaders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .leader-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leader-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: #ff6b35;
+            transition: width 0.3s ease;
+        }
+
+        .leader-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+        }
+
+        .leader-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .leader-card h4 {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .leader-card p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #555;
+            position: relative;
+        }
+
+
+/* home button css*/
+
+
+.breadcrumb-nav {
+display: flex;
+align-items: center;
+gap: 10px;
+font-size: 18px;
+font-weight: 500;
+padding: 1px 0px;
+color: #ffffff;
+    
+
+/* Position (adjust if needed) */
+position: absolute;
+top: 5%;
+left: 20px;
+
+z-index: 1000;
+
+}
+
+.breadcrumb-nav a {
+    text-decoration: none;
+    color: #ffd398;  /* light warm color */
+    transition: 0.3s;
+}
+
+.breadcrumb-nav a:hover {
+    color: #f09c00;   /* bright on hover */
+}
+
+.breadcrumb-nav span {
+    color: #ffa600;   /* arrow & current page */
+    font-size: 20px;
+}
+
+
+        /* Why Choose Us Section */
+        .why-choose {
+            padding: 80px 20px;
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .why-choose .section-title {
+            color: white;
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit-item {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .benefit-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #ff6b35;
+        }
+
+        .benefit-item p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a252f;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+
+        <nav class="breadcrumb-nav">
+            <a href="{% url 'home' %}">Home</a>
+           <span>›</span>
+            <a href="local_based_leaders.html">local-leaders</a>
+        </nav>
+
+            <h1>Small Group Experts</h1>
+            <p>We Specialize in Real, Rare & Remarkable Small Group Adventures</p>
+            <a class="cta-button" id="scroll-btn">Learn more</a>
+        </div>
+    </section>
+
+    <!-- Local Leaders Section -->
+    <section class="local-leaders" id="exprites">
+        <div class="container">
+            <h2 class="section-title">Locally Based Leaders</h2>
+            <p class="section-subtitle">Our passionate leaders are genuinely connected to the places we go and the people we meet.</p>
+
+            <div class="leaders-grid">
+                <div class="leader-card">
+                    <span class="leader-icon"></span>
+                    <h4>Deep Local Knowledge</h4>
+                    <p>Our leaders call these destinations home, offering insider perspectives and connections that only locals possess.</p>
+                </div>
+
+                <div class="leader-card">
+                    <span class="leader-icon"></span>
+                    <h4>Passionate Storytellers</h4>
+                    <p>Each guide brings personal stories, cultural insights, and genuine enthusiasm that brings destinations to life.</p>
+                </div>
+
+                <div class="leader-card">
+                    <span class="leader-icon"></span>
+                    <h4>Community Ties</h4>
+                    <p>Strong relationships with local communities open doors to authentic experiences and meaningful encounters.</p>
+                </div>
+
+                <div class="leader-card">
+                    <span class="leader-icon"></span>
+                    <h4>Cultural Ambassadors</h4>
+                    <p>More than guides, our leaders are cultural bridges who facilitate genuine understanding and connection.</p>
+                </div>
+
+                <div class="leader-card">
+                    <span class="leader-icon"></span>
+                    <h4>Native Expertise</h4>
+                    <p>Fluent in local languages and customs, they navigate nuances and create seamless, enriching experiences.</p>
+                </div>
+
+                <div class="leader-card">
+                    <span class="leader-icon"></span>
+                    <h4>Personalized Guidance</h4>
+                    <p>Attentive to group dynamics and individual interests, ensuring every traveler feels valued and engaged.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why Choose Small Group Adventures?</h2>
+
+            <div class="benefits">
+                <div class="benefit-item">
+                    <h4>Intimate Groups</h4>
+                    <p>Limited group sizes ensure personalized attention and meaningful connections</p>
+                </div>
+
+                <div class="benefit-item">
+                    <h4>Expert Guides</h4>
+                    <p>Local specialists with deep knowledge and passion for their regions</p>
+                </div>
+
+                <div class="benefit-item">
+                    <h4>Flexibility</h4>
+                    <p>Adaptable itineraries that respond to group interests and opportunities</p>
+                </div>
+
+                <div class="benefit-item">
+                    <h4>Sustainability</h4>
+                    <p>Responsible travel that respects local communities and environments</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <p>&copy; Aadar satkar</p>
+            <p>Specializing in Real, Rare & Remarkable Adventures</p>
+        </div>
+    </footer>
+                <script>
+document.getElementById('scroll-btn').addEventListener('click', function() {
+    document.querySelector('#exprites').scrollIntoView({
+        behavior: 'smooth'
+    });
+});
+</script>
+</body>
+</html>

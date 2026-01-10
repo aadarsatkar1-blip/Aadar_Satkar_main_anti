@@ -1,0 +1,386 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 1. Primary Meta Tags (Google Search ke liye) -->
+    <title>Aadar Satkar | Best Travel & Tour Planning</title>
+    <meta name="description"
+        content="Plan your perfect trip with Aadar Satkar. We offer customized tour packages, luxury travel planning, and unforgettable experiences in Maldives, Dubai, and more.">
+    <meta name="keywords" content="travel, tour packages, holiday planning, Aadar Satkar, vacation, trip planner">
+    <meta name="author" content="Aadar Satkar Team">
+
+
+    <!-- 4. Favicon (Browser Tab Icon) -->
+    <!-- Apni image ka path sahi lagana -->
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <!-- Video ka Poster Image Preload karo (LCP Fast hoga) -->
+    <link rel="preload" as="image" href="{% static 'images/video-poster.jpg' %}" fetchpriority="high">
+
+
+    <!-- 5. CSS File (Preload for Speed - Optional but Good) -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo">
+
+                </a>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                <li class="dropdown">
+                    <a href="{% url 'view_all_destinations' %}" class="dropbtn">Destination </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'destination_detail' 'bali' %}">Bali</a>
+                        <a href="{% url 'destination_detail' 'maldives' %}">Maldives</a>
+                        <a href="{% url 'destination_detail' 'india' %}">India</a>
+                        <a href="{% url 'view_all_destinations' %}">Explore All</a>
+                    </div>
+                </li>
+
+
+                <li class="dropdown">
+                    <a href="{% url 'home' %}" class="dropbtn">Holidays </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'destination_detail' 'switzerland' %}">Switzerland</a>
+                        <a href="{% url 'destination_detail' 'italy' %}">Italy</a>
+                        <a href="{% url 'destination_detail' 'spain' %}">Spain</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="{% url 'destination_detail' 'india' %}" class="dropbtn">India </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'destination_detail' 'jaipur' %}">Jaipur</a>
+                        <a href="{% url 'destination_detail' 'kerala' %}">Kerala</a>
+                        <a href="{% url 'destination_detail' 'goa' %}">Goa</a>
+                        <a href="{% url 'destination_detail' 'india' %}">Explore All</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="{% url 'extra' %}" class="dropbtn">Extra </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'weddings' %}">Weddings</a>
+                        <a href="{% url 'student_tour' %}">Student's tour</a>
+                        <a href="{% url 'medical_tourism' %}">Medical tourism</a>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#contact" class="dropbtn">Contact</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'plan_your_trip' %}" class="btn-primary">Plan Your Trip</a>
+                </li>
+            </ul>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video" poster="{% static 'images/video-poster.jpg' %}">
+            <source src="{% static 'videos/bg-video.mp4' %}" type="video/mp4">
+        </video>
+
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <h1>With perfection and satisfaction in every service.</h1>
+
+            <div class="hero-features">
+                <div class="feature-card">
+                    <h2>Events</h2>
+                    <p>Just make a wish<br> we bring it to reality.</p>
+                </div>
+                <div class="feature-card">
+                    <h2>Wedding's</h2>
+                    <p>The most beautiful moment of your life <br> we understand</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Student Tour's</h3>
+                    <p>Delicate care. Complete safety.</p>
+
+                </div>
+                <div class="feature-card">
+                    <h2>Medical Tourism</h2>
+                    <p>Think, compare — we’re here to help you.</p>
+
+                </div>
+            </div>
+
+            <button class="cta-button">Explore Destinations</button>
+        </div>
+    </section>
+
+
+
+    <!-- What Sets Us Apart -->
+    <section class="differentiators">
+        <div class="container">
+            <h2>What sets us apart</h2>
+            <p class="section-subtitle">We're all about sharing the joy of travel</p>
+
+            <div class="diff-grid">
+                <a href="{% url 'small_group_expertes' %}" class="diff-card diff-link">
+                    <div class="icon"></div>
+                    <h3>Small group experts</h3>
+                    <p>We've specialised in real, rare and remarkable small group adventures.</p>
+                </a>
+
+                <a href="{% url 'immersive_experiences' %}" class="diff-card diff-link">
+                    <div class="icon"></div>
+                    <h3>Immersive experiences</h3>
+                    <p>Uncover authentic local experiences that connect you to the heart of a place.</p>
+                </a>
+
+                <a href="{% url 'local_based_leaders' %}" class="diff-card diff-link">
+                    <div class="icon"></div>
+                    <h3>Locally based leaders</h3>
+                    <p>Our passionate leaders are genuinely connected to the places we go and the people we meet.</p>
+                </a>
+
+                <a href="{% url 'like_minded_travellers' %}" class="diff-card diff-link">
+                    <div class="icon"></div>
+                    <h3>Like-minded travellers</h3>
+                    <p>Connect and share experiences with a community of spirited explorers who care about the planet.
+                    </p>
+                </a>
+
+                <a href="{% url 'making_a_difference' %}" class="diff-card diff-link">
+                    <div class="icon"></div>
+                    <h3>Making a difference</h3>
+                    <p>For over 20 years, our not-for-profit Foundation has been giving travellers a chance to make a
+                        bigger impact.</p>
+                </a>
+
+                <a href="{% url 'B_crop_cirtificate' %}" class="diff-card diff-link">
+                    <div class="icon"></div>
+                    <h3>Our Values</h3>
+                    <p>Built on trust, sustainability, and heartfelt experiences.</p>
+                </a>
+
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <!-- Purpose Section -->
+    <section class="purpose">
+        <div class="container">
+            <div class="purpose-content">
+                <div class="purpose-text">
+                    <h2>How we're making a difference</h2>
+                    <p>For over 35 years, we've led travellers around the world to share in the real, rare and
+                        remarkable. We're beyond grateful for what travel gives us – and we're all for giving back
+                        through our Foundation by supporting communities worldwide.</p>
+                    <a href="{% url 'meet_the_foundation' %}" class="link-button">Meet the Foundation →</a>
+                </div>
+                <div class="purpose-image">
+                    <div class="image-placeholder">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="destinations" id="destination">
+        <div class="container">
+            <h2>Popular destinations</h2>
+
+            <div class="dest-grid">
+                {% for dest in destinations %}
+                <a href="{% url 'destination_detail' dest.slug %}" class="dest-card">
+                    <div class="dest-image"
+                        style="background-image: url('{% if dest.image %}{{ dest.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}');">
+                        <span class="dest-label">{{ dest.name }}</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>{{ dest.name }} Highlights</h3>
+                        <p>{{ dest.description|truncatechars:100 }}</p>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <div class="center-btn-container">
+                <a href="{% url 'view_all_destinations' %}" class="explore-btn">View All Destinations →</a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Extra Services Section -->
+    <section class="destinations" id="extras">
+        <div class="container">
+            <h2>Specialized Travel</h2>
+            <p class="section-subtitle">Beyond holidays – dedicated services for specific needs</p>
+
+            <div class="dest-grid">
+
+                <!-- Card 1: Student Tours -->
+                <a href="{% url 'student_tour' %}" class="dest-card">
+                    <div class="dest-image" style="background-image: url('{% static 'images/Education.jpg' %}');">
+                        <span class="dest-label">Education</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Student Tours</h3>
+                        <p></p>
+                    </div>
+                </a>
+
+                <!-- Card 2: Medical Tourism -->
+                <a href="{% url 'medical_tourism' %}" class="dest-card">
+                    <div class="dest-image" style="background-image: url('{% static 'images/Health.jpg' %}');">
+                        <span class="dest-label">Healthcare</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Medical Tourism</h3>
+                        <p></p>
+                    </div>
+                </a>
+
+                <!-- Card 3: Weddings -->
+                <a href="{% url 'weddings' %}" class="dest-card">
+                    <div class="dest-image" style="background-image: url('{% static 'images/Weddings.jpg' %}');">
+                        <span class="dest-label">Weddings</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Destination Weddings</h3>
+                        <p></p>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Social Proof -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What travellers say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"An incredible adventure with amazing people. The local guide made all the difference!"</p>
+                    <p class="author">- Sarah M., Italy Trip</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Perfectly organized, authentic experiences, and met lifelong friends. Highly recommend!"</p>
+                    <p class="author">- James T., Peru Adventure</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"The small group size made it feel personal and special. Best travel experience ever!"</p>
+                    <p class="author">- Lisa K., Thailand Tour</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="{% url 'our_story' %}">Our Story</a></li>
+                        <li><a href="{% url 'our_purpose' %}">Our Purpose</a></li>
+                        <li><a href="{% url 'careers' %}">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Travel Resources</h4>
+                    <ul>
+                        <li><a href="{% url 'trip_styles' %}">Trip Styles</a></li>
+                        <li><a href="{% url 'destinations' %}">Destinations</a></li>
+                        <li><a href="{% url 'travel_tips' %}">Travel Tips</a></li>
+                        <li><a href="{% url 'faqs' %}">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Booking Support</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Get travel inspiration and exclusive deals</p>
+
+                    <form class="newsletter-form" id="subscribeForm">
+                        <input type="email" id="subscriberEmail" name="email" autocomplete="email"
+                            placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="{% url 'facebook' %}">Facebook</a>
+                    <a href="{% url 'instagram' %}">Instagram</a>
+                    <a href="{% url 'twitter' %}">Twitter</a>
+                </div>
+
+                <!-- Contact Buttons -->
+                <div class="contact-buttons">
+                    <a href="tel:+917023030002" class="contact-link">📱 +91 7023030002</a>
+                    <a href="mailto:aadarsatkar@gmail.com" class="contact-link">📧 Email</a>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init("Awx8NRE5rPqxXJXvX"); 
+    </script>
+
+    <script type="module" src="{% static 'script.js' %}"></script>
+
+</body>
+
+</html>

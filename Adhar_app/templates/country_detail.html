@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ destination.name }} Destinations - Aadar Satkar</title>
+    <meta name="description" content="Explore top destinations in {{ destination.name }}.">
+
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        .destination-hero {
+            height: 60vh;
+            background-image: url('{% if destination.image %}{{ destination.image.url }}{% else %}{% static "images/logo.jpg" %}{% endif %}');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .europe-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .europe-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .europe-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .dest-grid {
+            display: grid;
+            /* Use auto-fill to handle few items gracefully without stretching to full width */
+            grid-template-columns: repeat(auto-fill, minmax(clamp(250px, 90vw, 350px), 1fr));
+            gap: clamp(20px, 3vw, 30px);
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background: white;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar" style="background: rgb(0, 0, 0); box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo">
+                </a>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="dropdown">
+                    <a href="{% url 'view_all_destinations' %}" class="dropbtn">Destination </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'view_all_destinations' %}">Explore All</a>
+                    </div>
+                </li>
+                <li><a href="#contact" class="dropbtn">Contact</a></li>
+                <li><a href="{% url 'plan_your_trip' %}" class="btn-primary">Plan Your Trip</a></li>
+            </ul>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="destination-hero">
+        <div class="container">
+            <h1>{{ destination.name }}</h1>
+            <p>Explore the best of {{ destination.name }} with Aadar Satkar</p>
+            <a href="{% url 'home' %}" class="back-btn">← Back Home</a>
+        </div>
+    </section>
+
+    <section class="destinations">
+        <div class="container">
+            <h2>Popular Destinations in {{ destination.name }}</h2>
+            <div class="dest-grid">
+                {% if sub_destinations %}
+                {% for city in sub_destinations %}
+                <a href="{% url 'destination_detail' city.slug %}" class="dest-card">
+                    <div class="dest-image"
+                        style="background-image: url('{% if city.image %}{{ city.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}');">
+                        <span class="dest-label">{{ city.name }}</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>{{ city.name }}</h3>
+                        <p>{{ city.description|truncatechars:80 }}</p>
+                    </div>
+                </a>
+                {% endfor %}
+                {% else %}
+                <p style="text-align: center; grid-column: 1/-1;">No popular destinations listed yet for {{
+                    destination.name }}.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Aadar Satkar. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="{% static 'script.js' %}"></script>
+
+</body>
+
+</html>

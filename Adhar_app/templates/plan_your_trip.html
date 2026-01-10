@@ -1,0 +1,246 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aadar Satkar Plan Your Trip</title>
+        <meta name="description" content="Plan your perfect trip with Aadar Satkar. We offer customized tour packages, luxury travel planning, and unforgettable experiences in Maldives, Dubai, and more.">
+    <meta name="keywords" content="travel, tour packages, holiday planning, Aadar Satkar, vacation, trip planner">
+    <meta name="author" content="Aadar Satkar Team">
+
+
+    <!-- 4. Favicon (Browser Tab Icon) -->
+    <!-- Apni image ka path sahi lagana -->
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2021&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: -50px auto 50px;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+
+        .submit-btn {
+            background: rgb(255, 136, 0);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: rgb(255, 136, 0);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: rgb(255, 136, 0);
+            text-decoration: none;
+            font-size: 20px;
+        }
+/* --- SMART ALIGNMENT FOR 'EXTRA' MENU --- */
+    
+    /* 1. DESKTOP ONLY (Screens wider than 768px) */
+    @media screen and (min-width: 769px) {
+        /* Target the last dropdown (Extra) */
+        .nav-menu .dropdown:last-child .dropdown-content {
+            left: auto;       /* Reset left alignment */
+            right: 0;         /* Lock to the RIGHT edge of the button */
+            transform: none;  /* Remove centering to prevent overflow */
+        }
+    }
+
+    /* 2. MOBILE ONLY (Screens smaller than 768px) */
+    @media screen and (max-width: 768px) {
+        .nav-menu .dropdown:last-child .dropdown-content {
+            position: static; /* Let it flow naturally in the list */
+            width: 100%;      /* Full width on phone */
+            transform: none;
+            box-shadow: none;
+        }
+    }
+
+    </style>
+</head>
+
+<body>
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo">
+            </a>
+        </div>
+
+        <ul class="nav-menu">
+            <li><a href="{% url 'home' %}">Home</a></li>
+
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Destination </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'bali' %}">Bali</a>
+                    <a href="{% url 'maldives' %}">Maldives</a>
+                    <a href="{% url 'india' %}">India</a>
+                    <a href="{% url 'view_all_destinations' %}">Explore All</a>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Holidays </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'switzerland' %}">Switzerland</a>
+                    <a href="{% url 'italy' %}">Italy</a>
+                    <a href="{% url 'spain' %}">Spain</a>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropbtn">India </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'india' %}">Jaipur</a>
+                    <a href="{% url 'india' %}">Kerala</a>
+                    <a href="{% url 'india' %}">Goa</a>
+                    <a href="{% url 'india' %}">Explore All</a>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Extra </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'weddings' %}">Weddings</a>
+                    <a href="{% url 'student_tour' %}">Student's tour</a>
+                    <a href="{% url 'medical_tourism' %}">Medical tourism</a>
+                </div>
+            </li>
+
+            <li><a href="#contact" class="dropbtn">Contact</a></li>
+
+            
+        </ul>
+
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+</nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Plan Your Dream Trip</h1>
+            <p>Tell us where you want to go, and we'll make it happen.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <form id="tripForm" action="https://formspree.io/f/mrbjnnob" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" name="destination"
+                        placeholder="e.g., Bali, Paris, or 'Not sure yet'" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell us about your trip</label>
+                    <textarea id="message" name="message" rows="5"
+                        placeholder="Dates, number of people, budget, special interests..." required
+                        ></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Request</button>
+            </form>
+            <div id="formStatus" style="margin-top: 20px; text-align: center; display: none;"></div>
+            <a href="{% url 'home' %}" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 Aadar Satkar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function(){
+        emailjs.init("Awx8NRE5rPqxXJXvX"); // Replace with your EmailJS public key
+    })();
+</script>
+
+<script type="module" src="{% static 'script.js' %}"></script>             
+
+
+            </body>
+</html>

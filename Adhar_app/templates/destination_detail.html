@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ destination.name }} - Aadar Satkar</title>
+    <meta name="description" content="{{ destination.description|truncatechars:160 }}">
+
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        /* Dynamic Hero Section */
+        .destination-hero {
+            height: 60vh;
+            background-image: url('{% if destination.image %}{{ destination.image.url }}{% else %}{% static "images/logo.jpg" %}{% endif %}');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .europe-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .europe-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .europe-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .europe-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            background: white;
+            color: #333;
+        }
+
+        /* Destinations Grid */
+        .europe-destinations {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo">
+                </a>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="dropdown">
+                    <a href="{% url 'view_all_destinations' %}" class="dropbtn">Destination </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'view_all_destinations' %}">Explore All</a>
+                    </div>
+                </li>
+                <li><a href="#contact" class="dropbtn">Contact</a></li>
+                <li><a href="{% url 'plan_your_trip' %}" class="btn-primary">Plan Your Trip</a></li>
+            </ul>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="destination-hero">
+        <div class="europe-hero-content">
+            <h1>{{ destination.name }}</h1>
+            <p>{{ destination.description }}</p>
+            <a href="{% url 'view_all_destinations' %}" class="back-btn">← Back to All Destinations</a>
+        </div>
+    </section>
+
+    <section class="europe-destinations">
+        <div class="container">
+            <h2 class="section-title">Available Packages</h2>
+            {% if destination.packages.all %}
+            <div class="dest-grid">
+                {% for package in destination.packages.all %}
+                <div class="dest-card" data-destination="{{ destination.name }}" data-price="{{ package.price }}">
+                    <div class="dest-image"
+                        style="background-image: url('{% if package.image %}{{ package.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}');">
+                        <span class="dest-label">{{ package.duration }}</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>{{ package.title }}</h3>
+                        <p>{{ package.overview|truncatechars:100 }}</p>
+                        <p style="font-weight: bold; color: #2ecc71;">₹{{ package.price }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p style="text-align: center; font-size: 1.2rem; color: #666;">
+                No packages listed yet. <br>
+                <a href="#contact" style="color: #007bff;">Contact us</a> for a custom quote!
+            </p>
+            {% endif %}
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="#">Email: info@aadarsatkar.com</a></li>
+                        <li><a href="#">Phone: +91 98765 43210</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Aadar Satkar. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Generic Modal for Packages -->
+    <div id="itinerary-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close-btn">&times;</span>
+            <div id="modal-image" class="modal-hero-image"></div>
+            <div class="modal-header">
+                <h2 id="modal-title">Trip Title</h2>
+                <div class="modal-price-container" style="display:none; margin-top: 5px;">
+                    Price: <span id="modal-price" style="font-size: 1.4rem; font-weight: bold; color: #2ecc71;"></span>
+                </div>
+            </div>
+            <div id="itinerary-view">
+                <div class="modal-body">
+                    <h3>📅 Proposed Itinerary</h3>
+                    <div id="modal-timeline" class="timeline"></div>
+                    <div class="modal-footer">
+                        <button id="customize-trip-btn" class="btn-primary-new">Customize This Trip</button>
+                    </div>
+                </div>
+            </div>
+            <div id="planning-form-view" class="hidden">
+                <div class="modal-body">
+                    <button id="back-to-itinerary-btn" class="btn-link">← Back</button>
+                    <h3>Plan your trip to <span id="form-destination-name">Destination</span></h3>
+                    <form id="trip-planning-form">
+                        <input type="hidden" id="destination-input" name="destination">
+                        <label>Your Name</label>
+                        <input type="text" name="name" required placeholder="Full Name">
+                        <label>Contact Email</label>
+                        <input type="email" name="email" required>
+                        <label>Contact Phone</label>
+                        <input type="tel" name="phone" required>
+                        <label>Number of Travelers</label>
+                        <input type="number" name="travelers" min="1" value="2">
+                        <label>Message / Special Requests</label>
+                        <textarea name="message" rows="3"></textarea>
+                        <button type="submit" class="btn-primary-new">Send Enquiry</button>
+                    </form>
+                    <div id="form-status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>emailjs.init("Awx8NRE5rPqxXJXvX");</script>
+    <script type="module" src="{% static 'script.js' %}"></script>
+</body>
+
+</html>

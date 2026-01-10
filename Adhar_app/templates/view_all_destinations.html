@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations - Aadar Satkar</title>
+    <meta name="description"
+        content="Plan your perfect trip with Aadar Satkar. We offer customized tour packages, luxury travel planning, and unforgettable experiences in Maldives, Dubai, and more.">
+    <meta name="keywords" content="travel, tour packages, holiday planning, Aadar Satkar, vacation, trip planner">
+    <meta name="author" content="Aadar Satkar Team">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+    <style>
+        /* Override header image with static tag */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url("{% static 'images/view_all_destination_header.jpg' %}");
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo">
+                </a>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Destination </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'destination_detail' 'bali' %}">Bali</a>
+                        <a href="{% url 'destination_detail' 'maldives' %}">Maldives</a>
+                        <a href="{% url 'destination_detail' 'india' %}">India</a>
+                        <a href="{% url 'view_all_destinations' %}">Explore All</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Holidays </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'destination_detail' 'switzerland' %}">Switzerland</a>
+                        <a href="{% url 'destination_detail' 'italy' %}">Italy</a>
+                        <a href="{% url 'destination_detail' 'spain' %}">Spain</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">India </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'destination_detail' 'jaipur' %}">Jaipur</a>
+                        <a href="{% url 'destination_detail' 'kerala' %}">Kerala</a>
+                        <a href="{% url 'destination_detail' 'goa' %}">Goa</a>
+                        <a href="{% url 'destination_detail' 'india' %}">Explore All</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Extra </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'weddings' %}">Weddings</a>
+                        <a href="{% url 'student_tour' %}">Student's tour</a>
+                        <a href="{% url 'medical_tourism' %}">Medical tourism</a>
+                    </div>
+                </li>
+
+                <li><a href="#contact" class="dropbtn">Contact</a></li>
+
+                <li><a href="{% url 'plan_your_trip' %}" class="btn-primary">Plan Your Trip</a></li>
+            </ul>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Explore the World</h1>
+            <p>Your gateway to unforgettable travel experiences</p>
+            <a href="{% url 'home' %}" class="back-btn">← Back Home</a>
+        </div>
+    </header>
+
+
+    <!-- Featured Destinations -->
+
+    <section class="destinations" id="destination">
+        <div class="container">
+            <h2>All destinations</h2>
+            <div class="dest-grid">
+                {% if destinations %}
+                {% for dest in destinations %}
+                <a href="{% url 'destination_detail' dest.slug %}" class="dest-card">
+                    <div class="dest-image" style="background-image: url('{{ dest.image.url }}');">
+                        <span class="dest-label">{{ dest.name }}</span>
+                    </div>
+                    <div class="dest-info">
+                        <h3>{{ dest.name }} Highlights</h3>
+                        <p>{{ dest.description|truncatechars:80 }}</p>
+                    </div>
+                </a>
+                {% endfor %}
+                {% else %}
+                <p style="text-align: center; grid-column: 1/-1;">No destinations found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="{% url 'our_story' %}">Our Story</a></li>
+                        <li><a href="{% url 'our_purpose' %}">Our Purpose</a></li>
+                        <li><a href="{% url 'careers' %}">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Travel Resources</h4>
+                    <ul>
+                        <li><a href="{% url 'trip_styles' %}">Trip Styles</a></li>
+                        <li><a href="{% url 'destinations' %}">Destinations</a></li>
+                        <li><a href="{% url 'travel_tips' %}">Travel Tips</a></li>
+                        <li><a href="{% url 'faqs' %}">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Booking Support</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Get travel inspiration and exclusive deals</p>
+
+                    <form class="newsletter-form" id="subscribeForm">
+                        <input type="email" id="subscriberEmail" name="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="{% url 'facebook' %}">Facebook</a>
+                    <a href="{% url 'instagram' %}">Instagram</a>
+                    <a href="{% url 'twitter' %}">Twitter</a>
+                </div>
+
+                <!-- Contact Buttons -->
+                <div class="contact-buttons">
+                    <a href="tel:+917023030002" class="contact-link">📱 +91 7023030002</a>
+                    <a href="mailto:aadarsatkar@gmail.com" class="contact-link">📧 Email</a>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- Fixed script path -->
+    <script type="module" src="{% static 'script.js' %}"></script>
+
+
+</body>
+
+</html>
