@@ -1,11 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Small Group Adventure Experts</title>
-        <meta name="description" content="Plan your perfect trip with Aadar Satkar. We offer customized tour packages, luxury travel planning, and unforgettable experiences in Maldives, Dubai, and more.">
+    <meta name="description"
+        content="Plan your perfect trip with Aadar Satkar. We offer customized tour packages, luxury travel planning, and unforgettable experiences in Maldives, Dubai, and more.">
     <meta name="keywords" content="travel, tour packages, holiday planning, Aadar Satkar, vacation, trip planner">
     <meta name="author" content="Aadar Satkar Team">
 
@@ -14,9 +16,7 @@
     <!-- Apni image ka path sahi lagana -->
     <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
     <style>
-
-
-/* css for small group expertes page*/
+        /* css for small group expertes page*/
 
         * {
             margin: 0;
@@ -32,8 +32,8 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                        url('{% static 'images/Small Group Experts.jpg' %}') center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url('{% static ' images/Small Group Experts.jpg' %}') center/cover;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -80,37 +80,40 @@
 
 
         .breadcrumb-nav {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 1px 0px;
-    color: #ffffff;
-    
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 1px 0px;
+            color: #ffffff;
 
-    /* Position (adjust if needed) */
-    position: absolute;
-    top: 5%;
-    left: 20px;
 
-    z-index: 1000;
-}
+            /* Position (adjust if needed) */
+            position: absolute;
+            top: 5%;
+            left: 20px;
 
-.breadcrumb-nav a {
-    text-decoration: none;
-    color: #ffd398;  /* light warm color */
-    transition: 0.3s;
-}
+            z-index: 1000;
+        }
 
-.breadcrumb-nav a:hover {
-    color: #f09c00;   /* bright on hover */
-}
+        .breadcrumb-nav a {
+            text-decoration: none;
+            color: #ffd398;
+            /* light warm color */
+            transition: 0.3s;
+        }
 
-.breadcrumb-nav span {
-    color: #ffa600;   /* arrow & current page */
-    font-size: 20px;
-}
+        .breadcrumb-nav a:hover {
+            color: #f09c00;
+            /* bright on hover */
+        }
+
+        .breadcrumb-nav span {
+            color: #ffa600;
+            /* arrow & current page */
+            font-size: 20px;
+        }
 
 
         /* Expertise Section */
@@ -149,7 +152,7 @@
             background: white;
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease;
         }
@@ -237,16 +240,17 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
 
-        <nav class="breadcrumb-nav">
-            <a href="{% url 'home' %}">Home</a>
-           <span>›</span>
-            <a href="small_group_expertes.html">Our Expertise</a>
-        </nav>
+            <nav class="breadcrumb-nav">
+                <a href="{% url 'home' %}">Home</a>
+                <span>›</span>
+                <a href="small_group_expertes.html">Our Expertise</a>
+            </nav>
 
 
 
@@ -266,19 +270,22 @@
                 <div class="feature-card">
                     <div class="feature-icon"></div>
                     <h3>Real Adventures</h3>
-                    <p>Authentic experiences that connect you with local cultures, untouched landscapes, and genuine moments that can't be replicated.</p>
+                    <p>Authentic experiences that connect you with local cultures, untouched landscapes, and genuine
+                        moments that can't be replicated.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon"></div>
                     <h3>Rare Destinations</h3>
-                    <p>Access to exclusive locations and hidden gems that most travelers never discover. We take you off the beaten path.</p>
+                    <p>Access to exclusive locations and hidden gems that most travelers never discover. We take you off
+                        the beaten path.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon"></div>
                     <h3>Remarkable Experiences</h3>
-                    <p>Unforgettable journeys crafted with meticulous attention to detail, creating memories that last a lifetime.</p>
+                    <p>Unforgettable journeys crafted with meticulous attention to detail, creating memories that last a
+                        lifetime.</p>
                 </div>
             </div>
         </div>
@@ -320,12 +327,13 @@
             <p>Specializing in Real, Rare & Remarkable Adventures</p>
         </div>
     </footer>
-            <script>
-document.getElementById('scroll-btn').addEventListener('click', function() {
-    document.querySelector('#expertise').scrollIntoView({
-        behavior: 'smooth'
-    });
-});
-</script>
+    <script>
+        document.getElementById('scroll-btn').addEventListener('click', function () {
+            document.querySelector('#expertise').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
+
 </html>

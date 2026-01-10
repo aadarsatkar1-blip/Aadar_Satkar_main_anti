@@ -30,8 +30,7 @@
         <div class="container">
             <div class="logo">
                 <a href="{% url 'home' %}">
-                    <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo">
-
+                    <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo" loading="lazy">
                 </a>
             </div>
 
@@ -96,7 +95,8 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <video autoplay muted loop playsinline class="hero-video" poster="{% static 'images/video-poster.jpg' %}">
+        <video autoplay muted loop playsinline class="hero-video" poster="{% static 'images/video-poster.jpg' %}"
+            loading="lazy">
             <source src="{% static 'videos/bg-video.mp4' %}" type="video/mp4">
         </video>
 
@@ -217,8 +217,8 @@
             <div class="dest-grid">
                 {% for dest in destinations %}
                 <a href="{% url 'destination_detail' dest.slug %}" class="dest-card">
-                    <div class="dest-image"
-                        style="background-image: url('{% if dest.image %}{{ dest.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}');">
+                    <div class="dest-image lazy-bg"
+                        data-bg="{% if dest.image %}{{ dest.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}">
                         <span class="dest-label">{{ dest.name }}</span>
                     </div>
                     <div class="dest-info">
@@ -246,7 +246,7 @@
 
                 <!-- Card 1: Student Tours -->
                 <a href="{% url 'student_tour' %}" class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Education.jpg' %}');">
+                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Education.jpg' %}">
                         <span class="dest-label">Education</span>
                     </div>
                     <div class="dest-info">
@@ -257,7 +257,7 @@
 
                 <!-- Card 2: Medical Tourism -->
                 <a href="{% url 'medical_tourism' %}" class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Health.jpg' %}');">
+                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Health.jpg' %}">
                         <span class="dest-label">Healthcare</span>
                     </div>
                     <div class="dest-info">
@@ -268,7 +268,7 @@
 
                 <!-- Card 3: Weddings -->
                 <a href="{% url 'weddings' %}" class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Weddings.jpg' %}');">
+                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Weddings.jpg' %}">
                         <span class="dest-label">Weddings</span>
                     </div>
                     <div class="dest-info">

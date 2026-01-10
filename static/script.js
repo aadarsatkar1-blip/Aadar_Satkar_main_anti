@@ -52,6 +52,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+
 // Scroll Animation for Elements
 const observerOptions = {
     threshold: 0.1,
@@ -66,6 +67,39 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, observerOptions);
+
+// 🖼️ Lazy Loading for Background Images
+const lazyBgOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px 300px 0px'
+};
+
+const lazyBgObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const bgUrl = el.dataset.bg;
+            if (bgUrl) {
+                el.style.backgroundImage = `url('${bgUrl}')`;
+                el.classList.add('loaded');
+            }
+            obs.unobserve(el);
+        }
+    });
+}, lazyBgOptions);
+
+function initLazyLoading() {
+    document.querySelectorAll('.lazy-bg').forEach(el => {
+        lazyBgObserver.observe(el);
+    });
+}
+
+// Initializing
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLazyLoading);
+} else {
+    initLazyLoading();
+}
 
 // Observe all cards for animation
 document.querySelectorAll('.diff-card, .dest-card, .testimonial-card').forEach(card => {

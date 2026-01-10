@@ -1389,3 +1389,16 @@ form textarea {
         gap: 15px;
     }
 }
+
+/* Lazy Loading Styles */
+.lazy-bg {
+    background-color: #f0f0f0;
+    transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out;
+    filter: blur(5px);
+    opacity: 0.8;
+}
+
+.lazy-bg.loaded {
+    filter: blur(0);
+    opacity: 1;
+}

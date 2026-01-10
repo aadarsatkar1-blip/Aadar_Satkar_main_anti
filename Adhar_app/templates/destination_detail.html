@@ -14,7 +14,6 @@
         /* Dynamic Hero Section */
         .destination-hero {
             height: 60vh;
-            background-image: url('{% if destination.image %}{{ destination.image.url }}{% else %}{% static "images/logo.jpg" %}{% endif %}');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -122,7 +121,8 @@
         </div>
     </nav>
 
-    <section class="destination-hero">
+    <section class="destination-hero lazy-bg"
+        data-bg="{% if destination.image %}{{ destination.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}">
         <div class="europe-hero-content">
             <h1>{{ destination.name }}</h1>
             <p>{{ destination.description }}</p>
@@ -137,8 +137,8 @@
             <div class="dest-grid">
                 {% for package in destination.packages.all %}
                 <div class="dest-card" data-destination="{{ destination.name }}" data-price="{{ package.price }}">
-                    <div class="dest-image"
-                        style="background-image: url('{% if package.image %}{{ package.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}');">
+                    <div class="dest-image lazy-bg"
+                        data-bg="{% if package.image %}{{ package.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}">
                         <span class="dest-label">{{ package.duration }}</span>
                     </div>
                     <div class="dest-info">

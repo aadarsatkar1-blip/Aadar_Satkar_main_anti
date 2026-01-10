@@ -14,7 +14,6 @@
     <style>
         .destination-hero {
             height: 60vh;
-            background-image: url('{% if destination.image %}{{ destination.image.url }}{% else %}{% static "images/logo.jpg" %}{% endif %}');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -82,7 +81,7 @@
         <div class="container nav-container">
             <div class="logo">
                 <a href="{% url 'home' %}">
-                    <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo">
+                    <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo" loading="lazy">
                 </a>
             </div>
 
@@ -106,7 +105,8 @@
         </div>
     </nav>
 
-    <section class="destination-hero">
+    <section class="destination-hero lazy-bg"
+        data-bg="{% if destination.image %}{{ destination.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}">
         <div class="container">
             <h1>{{ destination.name }}</h1>
             <p>Explore the best of {{ destination.name }} with Aadar Satkar</p>
@@ -121,8 +121,8 @@
                 {% if sub_destinations %}
                 {% for city in sub_destinations %}
                 <a href="{% url 'destination_detail' city.slug %}" class="dest-card">
-                    <div class="dest-image"
-                        style="background-image: url('{% if city.image %}{{ city.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}');">
+                    <div class="dest-image lazy-bg"
+                        data-bg="{% if city.image %}{{ city.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}">
                         <span class="dest-label">{{ city.name }}</span>
                     </div>
                     <div class="dest-info">
