@@ -4,10 +4,17 @@ from django.utils.text import slugify
 # Create your models here.
 
 class Destination(models.Model):
+    CATEGORY_CHOICES = [
+        ('general', 'General'),
+        ('student', 'Student Tour'),
+        ('wedding', 'Wedding'),
+        ('medical', 'Medical Tourism'),
+    ]
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     image = models.ImageField(upload_to='destinations/')
     description = models.TextField()
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='general')
     is_active = models.BooleanField(default=True)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='sub_destinations', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -20,7 +20,7 @@
         .europe-hero {
             height: 60vh;
             /* Updated Hero Image (Bavarian Alps) */
-            background-image: url('{% static 'images/germany.jpg' %}');
+            background-image: url("{% static 'images/germany.jpg' %}");
             background-size: cover;
             background-position: center;
             position: relative;
@@ -188,7 +188,8 @@
             <div class="dest-grid">
                 <div class="dest-card">
                     <div class="dest-image"
-                        style="background-image: url('{% static 'images/Berlin.jpg' %}');">
+                        style="background-image: url(path/to/Berlin.jpg);">
+                        
                         <span class="dest-label">Berlin</span>
                     </div>
                     <div class="dest-info">
@@ -414,7 +415,7 @@
     <script>
         emailjs.init("Awx8NRE5rPqxXJXvX"); 
     </script>
-    <script type="module" src="{% static 'script.js' %}"></script>             
+    <script src="{% static 'scripts.js' %}"></script>           
 
 </body>
 

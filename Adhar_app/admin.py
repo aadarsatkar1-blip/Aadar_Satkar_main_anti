@@ -5,9 +5,9 @@ from .models import Destination, Package, Enquiry, Subscriber
 
 @admin.register(Destination)
 class DestinationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'parent', 'is_active', 'created_at')
+    list_display = ('name', 'category', 'parent', 'is_active', 'created_at')
     search_fields = ('name', 'description')
-    list_filter = ('is_active', 'parent')
+    list_filter = ('is_active', 'category', 'parent')
     prepopulated_fields = {'slug': ('name',)}
 
 @admin.register(Package)

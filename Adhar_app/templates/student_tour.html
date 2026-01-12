@@ -18,10 +18,11 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <style>
         /* Hero Section */
-        .destination-hero {
-            height: 60vh;
+        .student-hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            url('{% static "images/studen_tour_header.jpg" %}') no-repeat center center;
             background-size: cover;
-            background-position: center;
             position: relative;
             display: flex;
             align-items: center;
@@ -30,69 +31,105 @@
             text-align: center;
         }
 
-        .europe-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .europe-hero-content {
+        .student-hero-content {
             position: relative;
             z-index: 1;
-            max-width: 800px;
-            padding: 20px;
+            max-width: 900px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .europe-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        .student-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            letter-spacing: 2px;
+            font-weight: 800;
         }
 
-        .europe-hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
+        .student-hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-weight: 300;
         }
 
         .back-btn {
             display: inline-block;
-            padding: 12px 30px;
-            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 35px;
+            background: rgba(255, 255, 255, 0.1);
             color: white;
             text-decoration: none;
             font-weight: bold;
             border: 2px solid white;
-            border-radius: 5px;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(5px);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
 
         .back-btn:hover {
             background: white;
-            color: #333;
+            color: #1a1a1a;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .europe-destinations {
-            padding: 80px 0;
-            background: #f8f9fa;
+        .student-tours-section {
+            padding: 100px 0;
+            background: #ffffff;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
-            color: #333;
+            color: #1a1a1a;
+            font-weight: 700;
         }
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 50px;
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Improved Package Cards */
+        .dest-label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(4px);
+        }
+
+        @media screen and (max-width: 768px) {
+            .student-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .student-hero p {
+                font-size: 1.1rem;
+            }
+
+            .student-hero {
+                height: 80vh;
+            }
         }
 
         @media screen and (min-width: 769px) {
@@ -166,83 +203,98 @@
         </div>
     </nav>
 
-    <section class="europe-hero">
-        <div class="europe-hero-content">
+    <section class="student-hero">
+        <div class="student-hero-content">
             <h1>Educational Adventures</h1>
             <p>Inspiring young minds through travel, culture, and hands-on learning experiences</p>
             <a href="{% url 'home' %}" class="back-btn">← Back Home</a>
         </div>
     </section>
 
-    <section class="europe-destinations">
+    <section class="student-tours-section">
         <div class="container">
             <h2 class="section-title">Student Tour Packages</h2>
             <p class="section-subtitle">Safe, educational, and fun trips designed for schools and universities</p>
 
             <div class="dest-grid">
-
-                <div class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/History.jpg' %}');">
-                        <span class="dest-label">History</span>
+                {% for dest in destinations %}
+                <div class="dest-card" data-slug="{{ dest.slug }}">
+                    <div class="dest-image"
+                        style="background-image: url('{% if dest.image %}{% if 'images/' in dest.image.name %}{% static dest.image.name %}{% else %}{{ dest.image.url }}{% endif %}{% endif %}');">
+                        <span class="dest-label">{{ dest.name }}</span>
                     </div>
                     <div class="dest-info">
-                        <h3>Historical India</h3>
-                        <p>A journey through time visiting forts, palaces, and UNESCO heritage sites in Rajasthan and
-                            Delhi.</p>
+                        <h3>{{ dest.name }}</h3>
+                        <p>{{ dest.description }}</p>
                     </div>
                 </div>
-
-                <div class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Science.jpg' %}');">
-                        <span class="dest-label">Science</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Science & Innovation</h3>
-                        <p>Visits to Science Cities, Planetariums, and ISRO facilities to inspire future scientists.</p>
-                    </div>
-                </div>
-
-                <div class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Adventure.jpg' %}');">
-                        <span class="dest-label">Adventure</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Himalayan Camps</h3>
-                        <p>Trekking, camping, and team-building activities in Manali and Rishikesh.</p>
-                    </div>
-                </div>
-
-                <div class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Industry.jpg' %}');">
-                        <span class="dest-label">Industry</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Industrial Visits</h3>
-                        <p>Factory tours and corporate interaction sessions for management and engineering students.</p>
-                    </div>
-                </div>
-
-                <div class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Nature.jpg' %}');">
-                        <span class="dest-label">Nature</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Wildlife Safari</h3>
-                        <p>Educational trips to National Parks to learn about biodiversity and conservation.</p>
-                    </div>
-                </div>
-
-                <div class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/International.jpg' %}');">
-                        <span class="dest-label">International</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>NASA Space Camp</h3>
-                        <p>An exclusive international educational tour to NASA Kennedy Space Center, USA.</p>
-                    </div>
-                </div>
-
+                {% empty %}
+                <p>No student tours available at the moment.</p>
+                {% endfor %}
             </div>
+            {% comment %}
+            <div class="dest-card">
+                <div class="dest-image" style="background-image: url('{% static 'images/History.jpg' %}');">
+                    <span class="dest-label">History</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Historical India</h3>
+                    <p>A journey through time visiting forts, palaces, and UNESCO heritage sites in Rajasthan and
+                        Delhi.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image" style="background-image: url('{% static 'images/Science.jpg' %}');">
+                    <span class="dest-label">Science</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Science & Innovation</h3>
+                    <p>Visits to Science Cities, Planetariums, and ISRO facilities to inspire future scientists.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image" style="background-image: url('{% static 'images/Adventure.jpg' %}');">
+                    <span class="dest-label">Adventure</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Himalayan Camps</h3>
+                    <p>Trekking, camping, and team-building activities in Manali and Rishikesh.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image" style="background-image: url('{% static 'images/Industry.jpg' %}');">
+                    <span class="dest-label">Industry</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Industrial Visits</h3>
+                    <p>Factory tours and corporate interaction sessions for management and engineering students.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image" style="background-image: url('{% static 'images/Nature.jpg' %}');">
+                    <span class="dest-label">Nature</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Wildlife Safari</h3>
+                    <p>Educational trips to National Parks to learn about biodiversity and conservation.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image" style="background-image: url('{% static 'images/International.jpg' %}');">
+                    <span class="dest-label">International</span>
+                </div>
+                <div class="dest-info">
+                    <h3>NASA Space Camp</h3>
+                    <p>An exclusive international educational tour to NASA Kennedy Space Center, USA.</p>
+                </div>
+            </div>
+
+            {% endcomment %}
         </div>
     </section>
 

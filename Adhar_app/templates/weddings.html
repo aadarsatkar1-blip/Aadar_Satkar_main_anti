@@ -174,68 +174,83 @@
             <p class="section-subtitle">From royal palaces to sunset beaches, we plan it all</p>
 
             <div class="dest-grid">
-
-                <div class="dest-card">
-                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Rajasthan.jpg' %}">
-                        <span class="dest-label">Rajasthan</span>
+                {% for dest in destinations %}
+                <div class="dest-card" data-slug="{{ dest.slug }}">
+                    <div class="dest-image"
+                        style="background-image: url('{% if dest.image %}{% if 'images/' in dest.image.name %}{% static dest.image.name %}{% else %}{{ dest.image.url }}{% endif %}{% endif %}');">
+                        <span class="dest-label">{{ dest.name }}</span>
                     </div>
                     <div class="dest-info">
-                        <h3>Royal Palaces</h3>
-                        <p>A regal wedding experience in the heritage palaces of Jaipur, Udaipur, and Jodhpur.</p>
+                        <h3>{{ dest.name }}</h3>
+                        <p>{{ dest.description }}</p>
                     </div>
                 </div>
-
-                <div class="dest-card">
-                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Goa.jpg' %}">
-                        <span class="dest-label">Goa</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Beach Wedding</h3>
-                        <p>Vows by the ocean with sunset backdrops and tropical vibes in Goa.</p>
-                    </div>
-                </div>
-
-                <div class="dest-card">
-                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Italy..jpg' %}">
-                        <span class="dest-label">Italy.</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Lake Como</h3>
-                        <p>A luxurious and romantic European wedding setting surrounded by mountains and villas.</p>
-                    </div>
-                </div>
-
-                <div class="dest-card">
-                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Bali..jpg' %}">
-                        <span class="dest-label">Bali.</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Tropical Paradise</h3>
-                        <p>Cliffside chapels or jungle settings for an exotic and intimate ceremony.</p>
-                    </div>
-                </div>
-
-                <div class="dest-card">
-                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Kerala..jpg' %}">
-                        <span class="dest-label">Kerala.</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Backwater Bliss</h3>
-                        <p>A unique traditional wedding on a houseboat or resort amidst lush greenery.</p>
-                    </div>
-                </div>
-
-                <div class="dest-card">
-                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Maldives..jpg' %}">
-                        <span class="dest-label">Maldives.</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Private Island</h3>
-                        <p>The ultimate luxury wedding experience on pristine white sands with azure waters.</p>
-                    </div>
-                </div>
-
+                {% empty %}
+                <p>No wedding locations available at the moment.</p>
+                {% endfor %}
             </div>
+            {% comment %}
+            <div class="dest-card">
+                <div class="dest-image lazy-bg" data-bg="{% static 'images/Rajasthan.jpg' %}">
+                    <span class="dest-label">Rajasthan</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Royal Palaces</h3>
+                    <p>A regal wedding experience in the heritage palaces of Jaipur, Udaipur, and Jodhpur.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image lazy-bg" data-bg="{% static 'images/Goa.jpg' %}">
+                    <span class="dest-label">Goa</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Beach Wedding</h3>
+                    <p>Vows by the ocean with sunset backdrops and tropical vibes in Goa.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image lazy-bg" data-bg="{% static 'images/Italy..jpg' %}">
+                    <span class="dest-label">Italy.</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Lake Como</h3>
+                    <p>A luxurious and romantic European wedding setting surrounded by mountains and villas.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image lazy-bg" data-bg="{% static 'images/Bali..jpg' %}">
+                    <span class="dest-label">Bali.</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Tropical Paradise</h3>
+                    <p>Cliffside chapels or jungle settings for an exotic and intimate ceremony.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image lazy-bg" data-bg="{% static 'images/Kerala..jpg' %}">
+                    <span class="dest-label">Kerala.</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Backwater Bliss</h3>
+                    <p>A unique traditional wedding on a houseboat or resort amidst lush greenery.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image lazy-bg" data-bg="{% static 'images/Maldives..jpg' %}">
+                    <span class="dest-label">Maldives.</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Private Island</h3>
+                    <p>The ultimate luxury wedding experience on pristine white sands with azure waters.</p>
+                </div>
+            </div>
+
+            {% endcomment %}
         </div>
     </section>
 

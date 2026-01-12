@@ -185,68 +185,83 @@
             <p class="section-subtitle">Affordable treatments, expert care, and holistic healing</p>
 
             <div class="dest-grid">
-
-                <div class="dest-card">
-                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Kerala, India.jpg' %}">
-                        <span class="dest-label">Kerala, India</span>
+                {% for dest in destinations %}
+                <div class="dest-card" data-slug="{{ dest.slug }}">
+                    <div class="dest-image"
+                        style="background-image: url('{% if dest.image %}{% if 'images/' in dest.image.name %}{% static dest.image.name %}{% else %}{{ dest.image.url }}{% endif %}{% endif %}');">
+                        <span class="dest-label">{{ dest.name }}</span>
                     </div>
                     <div class="dest-info">
-                        <h3>Ayurveda & Rejuvenation</h3>
-                        <p>Authentic Ayurvedic treatments, yoga retreats, and detox programs in God's Own Country.</p>
+                        <h3>{{ dest.name }}</h3>
+                        <p>{{ dest.description }}</p>
                     </div>
                 </div>
-
-                <div class="dest-card">
-                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Turkey.jpg' %}">
-                        <span class="dest-label">Turkey</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Hair & Dental Care</h3>
-                        <p>World-renowned destination for hair transplants and aesthetic dental procedures.</p>
-                    </div>
-                </div>
-
-                <div class="dest-card">
-                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Thailand..jpg' %}">
-                        <span class="dest-label">Thailand.</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Wellness & Checkups</h3>
-                        <p>Luxury spa treatments, comprehensive medical checkups, and cosmetic surgery.</p>
-                    </div>
-                </div>
-
-                <div class="dest-card">
-                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Delhi, India.jpg' %}">
-                        <span class="dest-label">Delhi, India</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Specialized Surgery</h3>
-                        <p>Advanced cardiac, orthopedic, and neurological surgeries at top accredited hospitals.</p>
-                    </div>
-                </div>
-
-                <div class="dest-card">
-                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Singapore.jpg' %}">
-                        <span class="dest-label">Singapore</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Advanced Oncology</h3>
-                        <p>Cutting-edge cancer treatments and screenings in state-of-the-art facilities.</p>
-                    </div>
-                </div>
-
-                <div class="dest-card">
-                    <div class="dest-image lazy-bg" data-bg="{% static 'images/Rishikesh.jpg' %}">
-                        <span class="dest-label">Rishikesh</span>
-                    </div>
-                    <div class="dest-info">
-                        <h3>Yoga & Meditation</h3>
-                        <p>Spiritual healing and mindfulness retreats in the Yoga Capital of the World.</p>
-                    </div>
-                </div>
-
+                {% empty %}
+                <p>No medical tourism packages available at the moment.</p>
+                {% endfor %}
             </div>
+            {% comment %}
+            <div class="dest-card">
+                <div class="dest-image lazy-bg" data-bg="{% static 'images/Kerala, India.jpg' %}">
+                    <span class="dest-label">Kerala, India</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Ayurveda & Rejuvenation</h3>
+                    <p>Authentic Ayurvedic treatments, yoga retreats, and detox programs in God's Own Country.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image lazy-bg" data-bg="{% static 'images/Turkey.jpg' %}">
+                    <span class="dest-label">Turkey</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Hair & Dental Care</h3>
+                    <p>World-renowned destination for hair transplants and aesthetic dental procedures.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image lazy-bg" data-bg="{% static 'images/Thailand..jpg' %}">
+                    <span class="dest-label">Thailand.</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Wellness & Checkups</h3>
+                    <p>Luxury spa treatments, comprehensive medical checkups, and cosmetic surgery.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image lazy-bg" data-bg="{% static 'images/Delhi, India.jpg' %}">
+                    <span class="dest-label">Delhi, India</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Specialized Surgery</h3>
+                    <p>Advanced cardiac, orthopedic, and neurological surgeries at top accredited hospitals.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image lazy-bg" data-bg="{% static 'images/Singapore.jpg' %}">
+                    <span class="dest-label">Singapore</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Advanced Oncology</h3>
+                    <p>Cutting-edge cancer treatments and screenings in state-of-the-art facilities.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-image lazy-bg" data-bg="{% static 'images/Rishikesh.jpg' %}">
+                    <span class="dest-label">Rishikesh</span>
+                </div>
+                <div class="dest-info">
+                    <h3>Yoga & Meditation</h3>
+                    <p>Spiritual healing and mindfulness retreats in the Yoga Capital of the World.</p>
+                </div>
+            </div>
+
+            {% endcomment %}
         </div>
     </section>
 

@@ -18,7 +18,7 @@ urlpatterns = [
     # path('thailand/', views.thailand, name='thailand'),
     # path('mexico/', views.maxico, name='maxico'),
     
-    # India Destinations
+    # # India Destinations
     # path('jaipur/', views.jaipur, name='jaipur'),
     # path('kerala/', views.kerala, name='kerala'),
     # path('goa/', views.goa, name='goa'),

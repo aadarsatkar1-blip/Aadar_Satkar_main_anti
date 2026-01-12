@@ -10,7 +10,7 @@
 
     <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
     <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="{% static 'script.js' %}"></script>
     <style>
         .destination-hero {
             height: 60vh;
@@ -87,14 +87,53 @@
 
             <ul class="nav-menu">
                 <li><a href="{% url 'home' %}">Home</a></li>
+
                 <li class="dropdown">
                     <a href="{% url 'view_all_destinations' %}" class="dropbtn">Destination </a>
                     <div class="dropdown-content">
+                        <a href="{% url 'destination_detail' 'bali' %}">Bali</a>
+                        <a href="{% url 'destination_detail' 'maldives' %}">Maldives</a>
+                        <a href="{% url 'destination_detail' 'india' %}">India</a>
                         <a href="{% url 'view_all_destinations' %}">Explore All</a>
                     </div>
                 </li>
-                <li><a href="#contact" class="dropbtn">Contact</a></li>
-                <li><a href="{% url 'plan_your_trip' %}" class="btn-primary">Plan Your Trip</a></li>
+                
+
+                <li class="dropdown">
+                    <a href="{% url 'home' %}" class="dropbtn">Holidays </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'destination_detail' 'switzerland' %}">Switzerland</a>
+                        <a href="{% url 'destination_detail' 'italy' %}">Italy</a>
+                        <a href="{% url 'destination_detail' 'spain' %}">Spain</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="{% url 'destination_detail' 'india' %}" class="dropbtn">India </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'destination_detail' 'jaipur' %}">Jaipur</a>
+                        <a href="{% url 'destination_detail' 'kerala' %}">Kerala</a>
+                        <a href="{% url 'destination_detail' 'goa' %}">Goa</a>
+                        <a href="{% url 'destination_detail' 'india' %}">Explore All</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="{% url 'extra' %}" class="dropbtn">Extra </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'weddings' %}">Weddings</a>
+                        <a href="{% url 'student_tour' %}">Student's tour</a>
+                        <a href="{% url 'medical_tourism' %}">Medical tourism</a>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="{% url 'contact' %}" class="dropbtn">Contact</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'plan_your_trip' %}" class="btn-primary">Plan Your Trip</a>
+                </li>
             </ul>
 
             <div class="hamburger">
@@ -142,13 +181,81 @@
     <!-- Footer -->
     <footer class="footer" id="contact">
         <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; 2024 Aadar Satkar. All Rights Reserved.</p>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="{% url 'our_story' %}">Our Story</a></li>
+                        <li><a href="{% url 'our_purpose' %}">Our Purpose</a></li>
+                        <li><a href="{% url 'careers' %}">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Travel Resources</h4>
+                    <ul>
+                        <li><a href="{% url 'trip_styles' %}">Trip Styles</a></li>
+                        <li><a href="{% url 'destinations' %}">Destinations</a></li>
+                        <li><a href="{% url 'travel_tips' %}">Travel Tips</a></li>
+                        <li><a href="{% url 'faqs' %}">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Booking Support</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Get travel inspiration and exclusive deals</p>
+
+                    <form class="newsletter-form" id="subscribeForm">
+                        <input 
+                            type="email"
+                            id="subscriberEmail"
+                            name="email"
+                            autocomplete="email"
+                            placeholder="Your email"
+                            required
+                        >
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
             </div>
+
+            <div class="footer-bottom">
+
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="{% url 'facebook' %}">Facebook</a>
+                    <a href="{% url 'instagram' %}">Instagram</a>
+                    <a href="{% url 'twitter' %}">Twitter</a>
+                </div>
+
+                <!-- Contact Buttons -->
+                <div class="contact-buttons">
+                    <a href="tel:+917023030002" class="contact-link">📱 +91 7023030002</a>
+                    <a href="mailto:aadarsatkar@gmail.com" class="contact-link">📧 Email</a>
+                </div>
+
+            </div>
+
         </div>
     </footer>
 
-    <script type="module" src="{% static 'script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init("Awx8NRE5rPqxXJXvX"); 
+    </script>
+
+    <script src="{% static 'script.js' %}"></script>
 
 </body>
 

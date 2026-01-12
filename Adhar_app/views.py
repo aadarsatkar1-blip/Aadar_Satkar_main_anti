@@ -14,9 +14,18 @@ def home(request):
     dest_map = {d.slug: d for d in destinations}
     sorted_destinations = [dest_map[slug] for slug in popular_slugs if slug in dest_map]
     
+    # Fetch special category destinations for the "Specialized Travel" section
+    # Get one destination from each category (student, wedding, medical)
+    student_dest = Destination.objects.filter(is_active=True, category='student').first()
+    wedding_dest = Destination.objects.filter(is_active=True, category='wedding').first()
+    medical_dest = Destination.objects.filter(is_active=True, category='medical').first()
+    
     context = {
         'page_title': 'Aadar Satkar | Best Travel & Tour Planning',
         'destinations': sorted_destinations,
+        'student_dest': student_dest,
+        'wedding_dest': wedding_dest,
+        'medical_dest': medical_dest,
     }
     return render(request, 'index.html', context)
 
@@ -24,107 +33,110 @@ def home(request):
 # ... (Keep existing hardcoded views if you want strict backward compat, 
 # but ideally we replace them. For now, let's ADD the generic view at the end)
 
-def bali(request):
-    context = {
-        'destination': 'Bali',
-        'description': 'Experience the magic of Bali with stunning beaches, ancient temples, and vibrant culture.'
-    }
-    return render(request, 'destinations/bali.html', context)
+# def bali(request):
+#     context = {
+#         'destination': 'Bali',
+#         'description': 'Experience the magic of Bali with stunning beaches, ancient temples, and vibrant culture.'
+#     }
+#     return render(request, 'destinations/bali.html', context)
 
-def maldives(request):
-    context = {
-        'destination': 'Maldives',
-        'description': 'Discover paradise in the Maldives with crystal-clear waters and luxury resorts.'
-    }
-    return render(request, 'destinations/maldives.html', context)
+# def maldives(request):
+#     context = {
+#         'destination': 'Maldives',
+#         'description': 'Discover paradise in the Maldives with crystal-clear waters and luxury resorts.'
+#     }
+#     return render(request, 'destinations/maldives.html', context)
 
-def india(request):
-    context = {
-        'destination': 'India',
-        'description': 'Explore incredible India with its rich heritage, diverse cultures, and breathtaking landscapes.'
-    }
-    return render(request, 'destinations/india.html', context)
+# def india(request):
+#     context = {
+#         'destination': 'India',
+#         'description': 'Explore incredible India with its rich heritage, diverse cultures, and breathtaking landscapes.'
+#     }
+#     return render(request, 'destinations/india.html', context)
 
-def switzerland(request):
-    context = {
-        'destination': 'Switzerland',
-        'description': 'Experience the Swiss Alps, pristine lakes, and charming cities.'
-    }
-    return render(request, 'destinations/switzerland.html', context)
+# def switzerland(request):
+#     context = {
+#         'destination': 'Switzerland',
+#         'description': 'Experience the Swiss Alps, pristine lakes, and charming cities.'
+#     }
+#     return render(request, 'destinations/switzerland.html', context)
 
-def italy(request):
-    context = {
-        'destination': 'Italy',
-        'description': 'Immerse yourself in Italian art, culture, cuisine, and history.'
-    }
-    return render(request, 'destinations/italy.html', context)
+# def italy(request):
+#     context = {
+#         'destination': 'Italy',
+#         'description': 'Immerse yourself in Italian art, culture, cuisine, and history.'
+#     }
+#     return render(request, 'destinations/italy.html', context)
 
-def spain(request):
-    context = {
-        'destination': 'Spain',
-        'description': 'Discover Spanish passion through flamenco, tapas, and stunning architecture.'
-    }
-    return render(request, 'destinations/Spain.html', context)
+# def spain(request):
+#     context = {
+#         'destination': 'Spain',
+#         'description': 'Discover Spanish passion through flamenco, tapas, and stunning architecture.'
+#     }
+#     return render(request, 'destinations/Spain.html', context)
 
-def germany(request):
-    context = {
-        'destination': 'Germany',
-        'description': 'Explore German castles, beer gardens, and rich history.'
-    }
-    return render(request, 'Germany.html', context)
+# def germany(request):
+#     context = {
+#         'destination': 'Germany',
+#         'description': 'Explore German castles, beer gardens, and rich history.'
+#     }
+#     return render(request, 'Germany.html', context)
 
-def affrica(request):
-    context = {
-        'destination': 'Africa',
-        'description': 'Embark on an African safari adventure and witness incredible wildlife.'
-    }
-    return render(request, 'destinations/afferica.html', context)
+# def affrica(request):
+#     context = {
+#         'destination': 'Africa',
+#         'description': 'Embark on an African safari adventure and witness incredible wildlife.'
+#     }
+#     return render(request, 'destinations/afferica.html', context)
 
-def thailand(request):
-    context = {
-        'destination': 'Thailand',
-        'description': 'Experience Thai hospitality, beaches, temples, and delicious cuisine.'
-    }
-    return render(request, 'destinations/thailand.html', context)
+# def thailand(request):
+#     context = {
+#         'destination': 'Thailand',
+#         'description': 'Experience Thai hospitality, beaches, temples, and delicious cuisine.'
+#     }
+#     return render(request, 'destinations/thailand.html', context)
 
-def maxico(request):
-    context = {
-        'destination': 'Mexico',
-        'description': 'Discover ancient Mayan ruins, beautiful beaches, and vibrant culture.'
-    }
-    return render(request, 'destinations/maxico.html', context)
+# def maxico(request):
+#     context = {
+#         'destination': 'Mexico',
+#         'description': 'Discover ancient Mayan ruins, beautiful beaches, and vibrant culture.'
+#     }
+#     return render(request, 'destinations/maxico.html', context)
 
-# India Destinations
-def jaipur(request):
-    context = {
-        'destination': 'Jaipur',
-        'description': 'The Pink City with magnificent palaces and forts.'
-    }
-    return render(request, 'destinations/india.html', context)
+# # India Destinations
+# def jaipur(request):
+#     context = {
+#         'destination': 'Jaipur',
+#         'description': 'The Pink City with magnificent palaces and forts.'
+#     }
+#     return render(request, 'destinations/india.html', context)
 
-def kerala(request):
-    context = {
-        'destination': 'Kerala',
-        'description': 'God\'s Own Country with backwaters and lush greenery.'
-    }
-    return render(request, 'destinations/india.html', context)
+# def kerala(request):
+#     context = {
+#         'destination': 'Kerala',
+#         'description': 'God\'s Own Country with backwaters and lush greenery.'
+#     }
+#     return render(request, 'destinations/india.html', context)
 
-def goa(request):
-    context = {
-        'destination': 'Goa',
-        'description': 'Beach paradise with Portuguese heritage.'
-    }
-    return render(request, 'destinations/india.html', context)
+# def goa(request):
+#     context = {
+#         'destination': 'Goa',
+#         'description': 'Beach paradise with Portuguese heritage.'
+#     }
+#     return render(request, 'destinations/india.html', context)
 
 # Special Services
 def weddings(request):
-    return render(request, 'weddings.html')
+    destinations = Destination.objects.filter(is_active=True, category='wedding').order_by('-created_at')
+    return render(request, 'weddings.html', {'destinations': destinations})
 
 def student_tour(request):
-    return render(request, 'student_tour.html')
+    destinations = Destination.objects.filter(is_active=True, category='student').order_by('-created_at')
+    return render(request, 'student_tour.html', {'destinations': destinations})
 
 def medical_tourism(request):
-    return render(request, 'medical_tourism.html')
+    destinations = Destination.objects.filter(is_active=True, category='medical').order_by('-created_at')
+    return render(request, 'medical_tourism.html', {'destinations': destinations})
 
 def extra(request):
     return render(request, 'index.html')
