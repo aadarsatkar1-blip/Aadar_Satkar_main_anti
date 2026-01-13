@@ -8,7 +8,7 @@
     <title>{{ destination.name }} Destinations - Aadar Satkar</title>
     <meta name="description" content="Explore top destinations in {{ destination.name }}.">
 
-    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'imagess/favicon.png' %}">
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <script src="{% static 'script.js' %}"></script>
     <style>
@@ -81,7 +81,7 @@
         <div class="container nav-container">
             <div class="logo">
                 <a href="{% url 'home' %}">
-                    <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo" loading="lazy">
+                    <img src="{% static 'imagess/logo.jpg' %}" alt="Aadar Satkar Logo" loading="lazy">
                 </a>
             </div>
 
@@ -97,7 +97,7 @@
                         <a href="{% url 'view_all_destinations' %}">Explore All</a>
                     </div>
                 </li>
-                
+
 
                 <li class="dropdown">
                     <a href="{% url 'home' %}" class="dropbtn">Holidays </a>
@@ -159,7 +159,7 @@
             <div class="dest-grid">
                 {% if sub_destinations %}
                 {% for city in sub_destinations %}
-                <a href="{% url 'destination_detail' city.slug %}" class="dest-card">
+                <a href="{% url 'destination_detail' slug=city.slug %}" class="dest-card">
                     <div class="dest-image lazy-bg"
                         data-bg="{% if city.image %}{{ city.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}">
                         <span class="dest-label">{{ city.name }}</span>
@@ -217,14 +217,8 @@
                     <p>Get travel inspiration and exclusive deals</p>
 
                     <form class="newsletter-form" id="subscribeForm">
-                        <input 
-                            type="email"
-                            id="subscriberEmail"
-                            name="email"
-                            autocomplete="email"
-                            placeholder="Your email"
-                            required
-                        >
+                        <input type="email" id="subscriberEmail" name="email" autocomplete="email"
+                            placeholder="Your email" required>
                         <button type="submit">Subscribe</button>
                     </form>
                 </div>

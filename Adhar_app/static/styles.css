@@ -1,0 +1,1418 @@
+/* styles.css */
+
+/* Reset and Base Styles */
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+    font-size: clamp(14px, 2vw, 16px);
+    /* Fluid base font size */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+
+/* Navigation */
+.navbar {
+    background: #000000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+
+    height: clamp(60px, 10vw, 80px);
+    padding: 5px 0;
+    /* पैडिंग भी कम की */
+    width: 100%;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dropdown {
+    position: relative;
+    /* Essential for positioning the dropdown content */
+    display: inline-block;
+    /* Allows side-by-side with other links */
+    color: #000;
+}
+
+/* The actual dropdown content (the links below "Destination") */
+.dropdown-content {
+    /* Initial state: Hide the content */
+    display: none;
+
+    /* Positioning the dropdown just below the main button */
+    position: absolute;
+    /* Matches navbar background */
+    min-width: 140px;
+    box-shadow: none;
+    /* No shadow for cleaner look */
+    z-index: 1;
+    /* Ensures it sits above other elements */
+    backdrop-filter: blur(50%);
+    -webkit-backdrop-filter: blur(50%);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+    color: rgb(0, 0, 0) !important;
+    /* Added !important to ensure black color */
+    margin-left: 5%;
+    padding: 16px 25px;
+    padding-left: 1px;
+    /* Indent for better readability */
+    text-decoration: none;
+    display: block;
+    /* Makes each link take up the full width */
+    text-align: left;
+    /* Aligns text left in the dropdown */
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: transparent;
+    /* Matches navbar background */
+    color: rgb(255, 136, 0) !important;
+    /* Highlight color on hover */
+}
+
+/* 3. The Hover Trigger */
+
+/* SHOW the dropdown menu when the user hovers over the main button container (.dropdown) */
+.dropdown:hover .dropdown-content {
+    display: block;
+    /* Changes from 'none' to 'block' to make it visible */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* LOGO */
+.logo {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    /* remove wrong positioning */
+
+}
+
+/* styles.css */
+.logo img {
+    height: clamp(80px, 10vw, 110px);
+    /* मोबाइल पर 80px, डेस्कटॉप पर 100px */
+    width: auto;
+    object-fit: contain;
+    transition: height 0.3s ease;
+}
+
+
+/* NAV MENU */
+/* NAV MENU */
+.nav-menu {
+    display: flex;
+    list-style: none;
+
+    /* Fluid spacing between menu links */
+    gap: clamp(20px, 2vw, 60px);
+
+    align-items: center;
+}
+
+
+.nav-menu a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    transition: color 0.3s;
+    white-space: nowrap;
+    /* Prevents text wrapping */
+    font-size: clamp(12px, 2.5vw, 16px);
+    /* Fluid font size */
+}
+
+.nav-menu a:hover {
+    color: #ff8800;
+}
+
+
+/* HAMBURGER */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+
+/* FIXED: make it visible on dark navbar */
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fffefe;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+
+.hero {
+    position: relative;
+    min-height: 60vh;
+    /* Responsive to viewport */
+    max-height: 800px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Video background */
+.hero-video {
+    width: 120%;
+    /* stretch more */
+    height: 120%;
+    /* stretch more */
+    object-fit: cover;
+    transform: scale(1);
+    /* zoom in */
+    position: absolute;
+    left: -10%;
+    top: -10%;
+}
+
+
+/* Dark overlay */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 0;
+}
+
+/* Foreground content */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    margin-top: 150px;
+}
+
+/* Back Button  for view all destination page */
+.back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: 5px;
+    margin-top: 23px;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.back-btn:hover {
+    background: white;
+    color: #333;
+}
+
+
+/* Your other styling remains the same */
+
+
+.hero h1 {
+    font-size: clamp(28px, 6vw, 52px);
+    /* Scales between 28px and 52px */
+    margin-bottom: clamp(20px, 4vw, 40px);
+    /* Responsive margin */
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.hero-features {
+    display: flex;
+    gap: clamp(15px, 3vw, 30px);
+    /* Responsive gap */
+    justify-content: center;
+    margin-bottom: clamp(20px, 4vw, 40px);
+    /* Responsive margin */
+    flex-wrap: wrap;
+    padding: 0 clamp(10px, 2vw, 20px);
+    /* Responsive padding */
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: clamp(15px, 3vw, 30px) clamp(20px, 3vw, 30px);
+    /* Responsive padding */
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s;
+    min-width: 250px;
+    max-width: 350px;
+    flex: 1 1 auto;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.feature-card p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+
+
+.cta-button {
+    background: rgb(187, 108, 18);
+    color: #ffffff;
+    border: none;
+    padding: clamp(12px, 2vw, 15px) clamp(30px, 5vw, 40px);
+    /* Responsive padding */
+    font-size: clamp(14px, 2.5vw, 18px);
+    /* Responsive font size */
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+/* Differentiators Section */
+.differentiators {
+    padding: clamp(40px, 8vw, 80px) 0;
+    /* Responsive vertical padding */
+    background: #f8f9fa;
+}
+
+.differentiators h2 {
+    text-align: center;
+    font-size: clamp(28px, 5vw, 40px);
+    /* Responsive heading */
+    margin-bottom: clamp(10px, 2vw, 15px);
+    color: #2d3748;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: clamp(16px, 3vw, 20px);
+    /* Responsive subtitle */
+    color: #718096;
+    margin-bottom: clamp(30px, 5vw, 50px);
+}
+
+.diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 90vw, 350px), 1fr));
+    /* Responsive grid */
+    gap: clamp(20px, 3vw, 30px);
+    /* Responsive gap */
+}
+
+.diff-card {
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s;
+}
+
+.diff-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.diff-card .icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.diff-card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: #2d3748;
+}
+
+.diff-card p {
+    color: #718096;
+    line-height: 1.7;
+}
+
+
+.diff-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.diff-link:hover {
+    text-decoration: none;
+}
+
+/* Purpose Section */
+.purpose {
+    padding: clamp(40px, 8vw, 80px) 0;
+    /* Responsive vertical padding */
+    background: white;
+}
+
+.purpose-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(300px, 90vw, 400px), 1fr));
+    /* Responsive 2-column */
+    gap: clamp(30px, 5vw, 60px);
+    align-items: center;
+}
+
+.purpose-text h2 {
+    font-size: clamp(24px, 5vw, 36px);
+    /* Responsive heading */
+    margin-bottom: clamp(15px, 3vw, 20px);
+    color: #2d3748;
+}
+
+.purpose-text p {
+    font-size: clamp(14px, 3vw, 18px);
+    /* Responsive font */
+    line-height: 1.8;
+    color: #4a5568;
+    margin-bottom: clamp(15px, 3vw, 25px);
+}
+
+.link-button {
+    display: inline-block;
+    color: #667eea;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.link-button:hover {
+    transform: translateX(5px);
+}
+
+
+
+
+.center-btn-container {
+    display: flex;
+    /* Turn on Flexbox */
+    justify-content: center;
+    /* Force horizontal centering */
+    align-items: center;
+    /* Center vertically */
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.explore-btn {
+    display: inline-block;
+    /* Replaces position: absolute */
+    background-color: rgb(187, 108, 18);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.explore-btn:hover {
+    transform: translateY(-3px);
+    /* Simple lift effect */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+
+
+
+.image-placeholder {
+    background: url('images/meet the foundition.jpg') center/cover no-repeat;
+    height: 400px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+
+
+}
+
+/* Destinations Section */
+.destinations {
+    padding: clamp(40px, 8vw, 80px) 0;
+    /* Responsive vertical padding */
+    background: #f8f9fa;
+}
+
+.destinations h2 {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 50px;
+    color: #2d3748;
+}
+
+.dest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(clamp(250px, 90vw, 350px), 1fr));
+    /* Responsive grid */
+    gap: clamp(20px, 3vw, 30px);
+    /* Responsive gap */
+}
+
+.dest-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+
+
+a.dest-card {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+a.dest-card * {
+    text-decoration: none !important;
+}
+
+
+
+
+.dest-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.dest-image {
+    height: 250px;
+    position: relative;
+
+    background-size: cover;
+    /* fills the box */
+    background-position: center;
+    /* centers the image */
+    background-repeat: no-repeat;
+    /* no repeat */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dest-label {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dest-info {
+    padding: 25px;
+}
+
+.dest-info h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: #2d3748;
+}
+
+.dest-info p {
+    color: #667eea;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: clamp(40px, 8vw, 80px) 0;
+    /* Responsive vertical padding */
+    background: white;
+}
+
+.testimonials h2 {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 50px;
+    color: #2d3748;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 90vw, 350px), 1fr));
+    /* Responsive grid */
+    gap: clamp(20px, 3vw, 30px);
+    /* Responsive gap */
+}
+
+.testimonial-card {
+    background: #f8f9fa;
+    padding: 35px;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+}
+
+.stars {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.testimonial-card p {
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.testimonial-card .author {
+    color: #718096;
+    font-style: italic;
+    font-size: 14px;
+}
+
+/* ========================================
+   FOOTER SECTION (Fixed Newsletter Layout)
+   ======================================== */
+
+.footer {
+    background: #2d3748;
+    color: white;
+    padding: 60px 0 30px;
+}
+
+.footer-grid {
+    display: grid;
+    /* 
+       This is the key: 
+       It creates automatic columns (About, Travel, Contact, Newsletter).
+       'minmax(220px, 1fr)' ensures the newsletter form doesn't get squashed.
+    */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+    align-items: start;
+    /* Aligns tops of all columns evenly */
+}
+
+.footer-col h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col a {
+    color: #cbd5e0;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 15px;
+}
+
+.footer-col a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Newsletter Form Styles */
+.newsletter-form {
+    display: flex;
+    flex-wrap: nowrap;
+    /* Allows wrapping on tiny screens */
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    /* Takes up remaining space */
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    background: #fff;
+    color: #333;
+    transition: box-shadow 0.2s ease;
+}
+
+
+.newsletter-form input:focus {
+    box-shadow: 0 0 0 2px rgba(207, 96, 5, 0.5);
+    /* Focus ring */
+}
+
+.newsletter-form button {
+    background: #cf6005;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    white-space: nowrap;
+    /* Prevents text from breaking */
+    transition: background 0.3s;
+    height: 100%;
+}
+
+.newsletter-form button:hover {
+    background: #e67e22;
+}
+
+
+@media (max-width: 600px) {
+    .newsletter-form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+        width: 100%;
+        flex: none;
+        /* 🔥 stops input from growing vertically */
+    }
+}
+
+/* Footer Bottom (Socials + Contact Buttons) */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    /* Pushes Socials Left, Contact Right */
+    align-items: center;
+    padding-top: 30px;
+    border-top: 1px solid #4a5568;
+    flex-wrap: wrap;
+    /* Safe wrapping for mobile */
+    gap: 20px;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.social-links a {
+    color: #cbd5e0;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #cf6005;
+    /* Orange hover for social links */
+}
+
+/* Contact Buttons (Phone & Email) */
+.contact-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.contact-link {
+    padding: 10px 20px;
+    background: #fff;
+    color: #2d3748;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Space between icon and text if you add icons */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contact-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    color: #cf6005;
+}
+
+/* Responsive Tweak for Mobile Footer */
+@media (max-width: 768px) {
+    .footer-bottom {
+        flex-direction: column;
+        /* Stack them on mobile */
+        text-align: center;
+        gap: 20px;
+    }
+
+    .contact-buttons {
+        width: 100%;
+        justify-content: center;
+        /* Center buttons on mobile */
+        gap: 15px;
+    }
+
+    .social-links {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+/* Contact Buttons */
+.contact-buttons {
+    display: flex;
+    gap: 50px;
+    /* spacing between phone & email buttons */
+}
+
+.contact-link {
+    padding: 8px 16px;
+    background: #fdfdfd;
+    color: #000;
+    text-decoration: none;
+    border-radius: 9999px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+
+/*for page header in view all destinations page*/
+.page-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/view_all_destination_header.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.animated-tagline {
+    font-size: 2rem;
+    text-align: center;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+.hindi-text {
+    display: block;
+    font-size: 1.8rem;
+    color: #ff9933;
+    text-shadow: 0 0 10px rgba(255, 153, 51, 0.8);
+    animation: hindiGlow 2s ease-in-out infinite alternate;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 780px) {
+    .footer-bottom {
+        align-items: center;
+    }
+
+    .contact-buttons {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-col h4 {
+        font-size: 16px;
+    }
+}
+
+/* ========================================
+   MODAL SYSTEM STYLES
+   ======================================== */
+
+/* Modal Overlay */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+/* Modal Content Box */
+.modal-content {
+    background-color: #fff;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Close Button */
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 35px;
+    color: white;
+    cursor: pointer;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.3);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: anchor-center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.modal-close-btn:hover {
+    background: rgba(0, 0, 0, 0.6);
+
+
+}
+
+/* Hero Image */
+.modal-hero-image {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Modal Header */
+.modal-header {
+    padding: 30px;
+    text-align: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 32px;
+}
+
+.modal-header p {
+    margin: 0;
+    color: #666;
+    font-size: 16px;
+}
+
+.modal-price {
+    color: #e67e22;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 30px;
+}
+
+.modal-body h3 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+}
+
+/* Timeline */
+.timeline {
+    margin: 20px 0;
+    border-left: 3px solid #e67e22;
+    padding-left: 20px;
+}
+
+.timeline-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.timeline-item:last-child {
+    border-bottom: none;
+}
+
+.timeline-item h4 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.timeline-item p {
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Form Elements */
+form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #444;
+    font-size: 14px;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #e67e22;
+}
+
+form textarea {
+    resize: vertical;
+}
+
+/* Buttons */
+.btn-primary {
+
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-left: -19%;
+}
+
+.btn-primary-new {
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.full-width {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: #e67e22;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Utility */
+.hidden {
+    display: none !important;
+}
+
+.modal-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+#form-status {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 600;
+    display: none;
+}
+
+#form-status.success {
+    background-color: #d4edda;
+    color: #155724;
+    display: block;
+}
+
+#form-status.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .modal-hero-image {
+        height: 200px;
+    }
+
+    .modal-header h2 {
+        font-size: 26px;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .modal-close-btn {
+        top: 10px;
+        right: 15px;
+        font-size: 28px;
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* --- MOBILE RESPONSIVENESS (Add to bottom of styles.css) --- */
+/* styles.css - Add/Replace at the very bottom */
+
+@media (max-width: 768px) {
+
+    /* 1. Show Hamburger Icon */
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        z-index: 1001;
+        margin-right: 10px;
+        margin-top: -18px;
+    }
+
+    /* Make the hamburger lines white and visible */
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        margin: 6px auto;
+        background-color: white;
+        /* Force white color */
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* 2. Hide Menu Off-Screen initially */
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        flex-direction: column;
+        background-color: #000000;
+        width: 100%;
+
+        height: 100vh;
+        /* इसे auto नहीं, 100vh रखें ताकि पूरी स्क्रीन कवर हो */
+
+        text-align: center;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Smooth slide effect */
+
+        padding-top: 80px;
+        /* इसे Navbar की हाइट से थोड़ा ज्यादा रखें (70px + 20px) */
+
+        margin-left: 0;
+        overflow-y: auto;
+    }
+
+    /* 3. Show Menu when active */
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        margin: -8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /* Thin divider line */
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* 4. Dropdown Styling (Seamless / No Box) */
+    .dropdown-content {
+        position: static;
+        display: none;
+        width: 100%;
+        background-color: transparent;
+        /* कोई अलग बैकग्राउंड नहीं */
+        box-shadow: none;
+        /* कोई बॉक्स या शैडो नहीं */
+        padding: 0;
+        border: none;
+    }
+
+    /* खुलने पर */
+    .dropdown.active .dropdown-content {
+        display: block;
+        /* हल्का सा एनिमेशन */
+        animation: fadeIn 0.5s ease;
+    }
+
+    /* Sub-menu Links Styles */
+    .dropdown-content a {
+        padding-left: 50px;
+        /* ज्यादा Indentation ताकि पता चले ये सब-मेन्यू है */
+        padding-top: 0px;
+        padding-bottom: 14px;
+
+        font-size: 15px;
+        /* मेन लिंक से थोड़ा छोटा */
+        color: #888888 !important;
+        /* हल्का ग्रे रंग */
+
+        border-bottom: none;
+        /* नीचे की लाइन हटा दी ताकि क्लीन दिखे */
+        font-weight: 400;
+        /* फॉन्ट पतला */
+    }
+
+    .dropdown-content a:hover {
+        color: #ff8800 !important;
+        /* होवर पर ऑरेंज */
+        background: transparent;
+        /* कोई बैकग्राउंड बॉक्स नहीं */
+        padding-left: 55px;
+        /* होवर करने पर हल्का सा हिलने का इफेक्ट */
+        transition: all 0.2s;
+    }
+
+    /* 5. Arrow Icon (Simple) */
+    .dropbtn::after {
+        content: '+';
+        /* प्लस साइन ज्यादा क्लीन लगता है */
+        font-size: 20px;
+        font-weight: 300;
+        transition: transform 0.3s;
+        margin-right: 10px;
+        margin-top: -10px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* Hamburger Animation to X */
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+
+
+
+/* Mobile hero adjustment */
+@media (max-width: 768px) {
+    .hero {
+        display: flex;
+        /* Use flex for centering */
+        flex-direction: column;
+        /* Stack content vertically */
+        justify-content: center;
+        /* Vertical centering */
+        align-items: center;
+        /* Horizontal centering */
+        min-height: 100vh;
+        /* Full screen height */
+        padding: 20px;
+        /* Optional spacing */
+        text-align: center;
+        /* Center text inside */
+    }
+
+    .hero-content {
+        margin: 0;
+        /* Remove extra margin */
+    }
+
+    .explore-btn {
+        display: inline-block;
+        margin-top: 20px;
+        transform: none;
+    }
+
+    .hero h1 {
+        font-size: clamp(22px, 5vw, 36px);
+        margin-bottom: 20px;
+    }
+
+    .hero-features {
+        margin-bottom: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* Lazy Loading Styles */
+.lazy-bg {
+    background-color: #f0f0f0;
+    transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out;
+    filter: blur(5px);
+    opacity: 0.8;
+}
+
+.lazy-bg.loaded {
+    filter: blur(0);
+    opacity: 1;
+}

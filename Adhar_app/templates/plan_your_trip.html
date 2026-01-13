@@ -117,67 +117,72 @@
 </head>
 
 <body>
-<nav class="navbar">
-    <div class="container">
-        <div class="logo">
-            <a href="{% url 'home' %}">
-                <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo">
-            </a>
+    <nav class="navbar" style="background: rgb(0, 0, 0); box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo" loading="lazy">
+                </a>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                <li class="dropdown">
+                    <a href="{% url 'view_all_destinations' %}" class="dropbtn">Destination </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'destination_detail' 'bali' %}">Bali</a>
+                        <a href="{% url 'destination_detail' 'maldives' %}">Maldives</a>
+                        <a href="{% url 'destination_detail' 'india' %}">India</a>
+                        <a href="{% url 'view_all_destinations' %}">Explore All</a>
+                    </div>
+                </li>
+
+
+                <li class="dropdown">
+                    <a href="{% url 'home' %}" class="dropbtn">Holidays </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'destination_detail' 'switzerland' %}">Switzerland</a>
+                        <a href="{% url 'destination_detail' 'italy' %}">Italy</a>
+                        <a href="{% url 'destination_detail' 'spain' %}">Spain</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="{% url 'destination_detail' 'india' %}" class="dropbtn">India </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'destination_detail' 'jaipur' %}">Jaipur</a>
+                        <a href="{% url 'destination_detail' 'kerala' %}">Kerala</a>
+                        <a href="{% url 'destination_detail' 'goa' %}">Goa</a>
+                        <a href="{% url 'destination_detail' 'india' %}">Explore All</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="{% url 'extra' %}" class="dropbtn">Extra </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'weddings' %}">Weddings</a>
+                        <a href="{% url 'student_tour' %}">Student's tour</a>
+                        <a href="{% url 'medical_tourism' %}">Medical tourism</a>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="{% url 'contact' %}" class="dropbtn">Contact</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'plan_your_trip' %}" class="btn-primary">Plan Your Trip</a>
+                </li>
+            </ul>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
-
-        <ul class="nav-menu">
-            <li><a href="{% url 'home' %}">Home</a></li>
-
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Destination </a>
-                <div class="dropdown-content">
-                    <a href="{% url 'bali' %}">Bali</a>
-                    <a href="{% url 'maldives' %}">Maldives</a>
-                    <a href="{% url 'india' %}">India</a>
-                    <a href="{% url 'view_all_destinations' %}">Explore All</a>
-                </div>
-            </li>
-
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Holidays </a>
-                <div class="dropdown-content">
-                    <a href="{% url 'switzerland' %}">Switzerland</a>
-                    <a href="{% url 'italy' %}">Italy</a>
-                    <a href="{% url 'spain' %}">Spain</a>
-                </div>
-            </li>
-
-            <li class="dropdown">
-                <a href="#" class="dropbtn">India </a>
-                <div class="dropdown-content">
-                    <a href="{% url 'india' %}">Jaipur</a>
-                    <a href="{% url 'india' %}">Kerala</a>
-                    <a href="{% url 'india' %}">Goa</a>
-                    <a href="{% url 'india' %}">Explore All</a>
-                </div>
-            </li>
-
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Extra </a>
-                <div class="dropdown-content">
-                    <a href="{% url 'weddings' %}">Weddings</a>
-                    <a href="{% url 'student_tour' %}">Student's tour</a>
-                    <a href="{% url 'medical_tourism' %}">Medical tourism</a>
-                </div>
-            </li>
-
-            <li><a href="#contact" class="dropbtn">Contact</a></li>
-
-            
-        </ul>
-
-        <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-    </div>
-</nav>
+    </nav>
 
     <header class="page-header">
         <div class="container">

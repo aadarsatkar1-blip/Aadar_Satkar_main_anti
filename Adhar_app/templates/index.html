@@ -14,9 +14,9 @@
 
     <!-- 4. Favicon (Browser Tab Icon) -->
     <!-- Apni image ka path sahi lagana -->
-    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'imagess/favicon.png' %}">
     <!-- Video ka Poster Image Preload karo (LCP Fast hoga) -->
-<link rel="preload" as="image" href="{% static 'images/video-poster.jpg' %}" fetchpriority="high">
+<link rel="preload" as="image" href="{% static 'imagess/video-poster.jpg' %}" fetchpriority="high">
 
 
     <!-- 5. CSS File (Preload for Speed - Optional but Good) -->
@@ -28,7 +28,7 @@
     <div class="container">
         <div class="logo">
             <a href="{% url 'home' %}">
-                <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo">
+                <img src="{% static 'imagess/logo.jpg' %}" alt="Aadar Satkar Logo">
 
             </a>
         </div>
@@ -95,8 +95,8 @@
 
  <!-- Hero Section -->
 <section class="hero">
-    <video autoplay muted loop playsinline class="hero-video" poster="{% static 'images/video-poster.jpg' %}">
-    <source src="{% static 'videos/bg-video.mp4' %}" type="video/mp4">
+    <video autoplay muted loop playsinline class="hero-video" poster="{% static 'imagess/video-poster.jpg' %}">
+    <source src="{% static 'imagess/bg-video.mp4' %}" type="video/mp4">
 </video>
 
 
@@ -197,9 +197,7 @@
                     <a href="{% url 'meet_the_foundation' %}" class="link-button">Meet the Foundation →</a>
                 </div>
                 <div class="purpose-image">
-                    <div class="image-placeholder">
-                       
-                    </div>
+                    <div class="image-placeholder" style="background-image: url('{% static 'imagess/meet the foundition.jpg' %}');"></div>
                 </div>
             </div>
         </div>
@@ -212,7 +210,7 @@
             <div class="dest-grid">
 
                 <a href="{% url 'destination_detail' 'germany' %}" class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/germany.jpg' %}');">
+                    <div class="dest-image" style="background-image: url('{% static 'imagess/germany.jpg' %}');">
 
                         <span class="dest-label">Germany</span>
                     </div>
@@ -223,7 +221,7 @@
                 </a>
 
                 <a href="{% url 'destination_detail' 'italy' %}" class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Italy.jpg' %}');">
+                    <div class="dest-image" style="background-image: url('{% static 'imagess/Italy.jpg' %}');">
                         <span class="dest-label">Italy</span>
                     </div>
                     <div class="dest-info">
@@ -233,7 +231,7 @@
                 </a>
 
                 <a href="{% url 'destination_detail' 'affrica' %}" class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Affirca.jpg' %}');">
+                    <div class="dest-image" style="background-image: url('{% static 'imagess/Affirca.jpg' %}');">
                         <span class="dest-label">Africa</span>
                     </div>
                     <div class="dest-info">
@@ -243,7 +241,7 @@
                 </a>
 
                 <a href="{% url 'destination_detail' 'spain' %}" class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Spain.jpg' %}');">
+                    <div class="dest-image" style="background-image: url('{% static 'imagess/Spain.jpg' %}');">
                         <span class="dest-label">Spain</span>
                     </div>
                     <div class="dest-info">
@@ -253,7 +251,7 @@
                 </a>
 
                     <a href="{% url 'destination_detail' 'maldives' %}" class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Maldives.jpg' %}');">
+                    <div class="dest-image" style="background-image: url('{% static 'imagess/Maldives.jpg' %}');">
                         <span class="dest-label">Maldives</span>
                     </div>
                     <div class="dest-info">
@@ -263,7 +261,7 @@
                 </a>
 
                 <a href="{% url 'destination_detail' 'bali' %}" class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Bali.jpg' %}');">
+                    <div class="dest-image" style="background-image: url('{% static 'imagess/Bali.jpg' %}');">
                         <span class="dest-label">Bali</span>
                     </div>
                     <div class="dest-info">
@@ -301,7 +299,7 @@
                 </a>
                 {% else %}
                 <a href="{% url 'student_tour' %}" class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Education.jpg' %}');">
+                    <div class="dest-image" style="background-image: url('{% static 'imagess/Education.jpg' %}');">
                         <span class="dest-label">Education</span>
                     </div>
                     <div class="dest-info">
@@ -324,7 +322,7 @@
                 </a>
                 {% else %}
                 <a href="{% url 'medical_tourism' %}" class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Health.jpg' %}');">
+                    <div class="dest-image" style="background-image: url('{% static 'imagess/Health.jpg' %}');">
                         <span class="dest-label">Healthcare</span>
                     </div>
                     <div class="dest-info">
@@ -347,7 +345,7 @@
                 </a>
                 {% else %}
                 <a href="{% url 'weddings' %}" class="dest-card">
-                    <div class="dest-image" style="background-image: url('{% static 'images/Weddings.jpg' %}');">
+                    <div class="dest-image" style="background-image: url('{% static 'imagess/Weddings.jpg' %}');">
                         <span class="dest-label">Weddings</span>
                     </div>
                     <div class="dest-info">
