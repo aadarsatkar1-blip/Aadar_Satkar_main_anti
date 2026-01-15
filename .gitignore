@@ -1,0 +1,68 @@
+# =====================
+# Python
+# =====================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# =====================
+# Virtual Environments
+# =====================
+.venv/
+venv/
+env/
+
+# =====================
+# Environment variables / secrets
+# =====================
+.env
+.env.*
+*.env
+
+# =====================
+# Django
+# =====================
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Django migrations cache
+**/migrations/__pycache__/
+
+# =====================
+# Supabase
+# =====================
+supabase/.temp/
+supabase/.env
+
+# =====================
+# Node / Vite (if used)
+# =====================
+node_modules/
+dist/
+.vite/
+
+# =====================
+# OS / Editor
+# =====================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# =====================
+# Test / Coverage
+# =====================
+.coverage
+htmlcov/
+pytest_cache/
