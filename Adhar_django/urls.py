@@ -26,6 +26,10 @@ urlpatterns = [
 from django.conf import settings
 from django.conf.urls.static import static
 
+# Only serve media files in development (production uses Supabase)
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # Check if MEDIA_URL and MEDIA_ROOT are defined
+    if hasattr(settings, 'MEDIA_URL') and hasattr(settings, 'MEDIA_ROOT'):
+        if settings.MEDIA_URL and settings.MEDIA_ROOT:
+            urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

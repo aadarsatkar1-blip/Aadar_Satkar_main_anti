@@ -7,18 +7,25 @@ from .models import Destination
 # Home Page
 def home(request):
     # Fetch specific popular destinations by slug for the homepage cards
+    # Using select_related to optimize parent relationship if needed
     popular_slugs = ['germany', 'italy', 'africa', 'spain', 'maldives', 'bali']
-    destinations = Destination.objects.filter(slug__in=popular_slugs)
+    destinations = Destination.objects.filter(slug__in=popular_slugs).select_related('parent')
     
     # Sort them to match the desired order
     dest_map = {d.slug: d for d in destinations}
     sorted_destinations = [dest_map[slug] for slug in popular_slugs if slug in dest_map]
     
     # Fetch special category destinations for the "Specialized Travel" section
-    # Get one destination from each category (student, wedding, medical)
-    student_dest = Destination.objects.filter(is_active=True, category='student').first()
-    wedding_dest = Destination.objects.filter(is_active=True, category='wedding').first()
-    medical_dest = Destination.objects.filter(is_active=True, category='medical').first()
+    # Optimized: Single query instead of 3 separate queries
+    category_dests = list(Destination.objects.filter(
+        is_active=True, 
+        category__in=['student', 'wedding', 'medical']
+    ).order_by('category', 'created_at'))
+    
+    # Map to individual variables - get first of each category
+    student_dest = next((d for d in category_dests if d.category == 'student'), None)
+    wedding_dest = next((d for d in category_dests if d.category == 'wedding'), None)
+    medical_dest = next((d for d in category_dests if d.category == 'medical'), None)
     
     context = {
         'page_title': 'Aadar Satkar | Best Travel & Tour Planning',
@@ -127,15 +134,27 @@ def home(request):
 
 # Special Services
 def weddings(request):
-    destinations = Destination.objects.filter(is_active=True, category='wedding').order_by('-created_at')
+    # Optimized: Use select_related to avoid N+1 queries for parent relationships
+    destinations = Destination.objects.filter(
+        is_active=True, 
+        category='wedding'
+    ).select_related('parent').order_by('-created_at')
     return render(request, 'weddings.html', {'destinations': destinations})
 
 def student_tour(request):
-    destinations = Destination.objects.filter(is_active=True, category='student').order_by('-created_at')
+    # Optimized: Use select_related to avoid N+1 queries for parent relationships
+    destinations = Destination.objects.filter(
+        is_active=True, 
+        category='student'
+    ).select_related('parent').order_by('-created_at')
     return render(request, 'student_tour.html', {'destinations': destinations})
 
 def medical_tourism(request):
-    destinations = Destination.objects.filter(is_active=True, category='medical').order_by('-created_at')
+    # Optimized: Use select_related to avoid N+1 queries for parent relationships
+    destinations = Destination.objects.filter(
+        is_active=True, 
+        category='medical'
+    ).select_related('parent').order_by('-created_at')
     return render(request, 'medical_tourism.html', {'destinations': destinations})
 
 def extra(request):
@@ -144,14 +163,22 @@ def extra(request):
 # Information Pages
 def view_all_destinations(request):
     # Fetch all active destinations that are Countries (no parent)
-    destinations = Destination.objects.filter(is_active=True, parent__isnull=True).order_by('-created_at')
+    # Optimized: Prefetch related sub_destinations to avoid N+1 queries
+    destinations = Destination.objects.filter(
+        is_active=True, 
+        parent__isnull=True
+    ).prefetch_related('sub_destinations').order_by('-created_at')
     return render(request, 'view_all_destinations.html', {'destinations': destinations})
 
 def destination_detail(request, slug):
-    destination = get_object_or_404(Destination, slug=slug)
+    # Optimized: Use select_related and prefetch_related to avoid N+1 queries
+    destination = get_object_or_404(
+        Destination.objects.select_related('parent').prefetch_related('packages'),
+        slug=slug
+    )
     
     # Check if this destination has children (sub-destinations)
-    sub_destinations = destination.sub_destinations.filter(is_active=True)
+    sub_destinations = destination.sub_destinations.filter(is_active=True).select_related('parent')
     
     if sub_destinations.exists():
         # It's a Country -> Show list of Cities (Sub-Destinations)
@@ -161,6 +188,7 @@ def destination_detail(request, slug):
         })
     else:
         # It's a City/End-Node -> Show Packages (Existing Logic)
+        # Packages are already prefetched above
         return render(request, 'destination_detail.html', {'destination': destination})
 
 def small_group_expertes(request):

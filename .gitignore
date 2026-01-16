@@ -38,6 +38,11 @@ staticfiles/
 # Django migrations cache
 **/migrations/__pycache__/
 
+# Django fixtures with sensitive data (passwords, session data, etc.)
+data.json
+fixtures/*.json
+*.json.bak
+
 # =====================
 # Supabase
 # =====================

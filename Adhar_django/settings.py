@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = (config('SECRET_KEY')) 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
@@ -34,8 +34,8 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
-    # Temporarily disabled due to pagination error with Django 6.0.1
-    # 'jazzmin',
+    # now added jazzmin admin theme caz its working fine with django 5.2.10
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize', # For human-friendly number formatting
+    'whitenoise.runserver_nostatic',  # Disable Django's static file handling during development
     'Adhar_app',
 ]
 
@@ -57,16 +58,16 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Aadar Satkar",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "images/logo.jpg",
+    "site_logo": "imagess/logo.jpg",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    "login_logo": "images/logo.jpg",
+    "login_logo": "imagess/logo.jpg",
 
     # CSS classes that are applied to the logo above
     "site_logo_classes": "img-circle",
 
     # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
-    "site_icon": "images/favicon.png",
+    "site_icon": "imagess/favicon.png",
 
     # Welcome text on the login screen
     "welcome_sign": "Welcome to Aadar Satkar",
@@ -94,6 +95,7 @@ JAZZMIN_SETTINGS = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # For serving static files in production
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -129,9 +131,9 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL'),
+        default=config('DATABASE_URL', default='sqlite:///db.sqlite3'),
         conn_max_age=600,
-        ssl_require=True
+        ssl_require=config('DATABASE_SSL_REQUIRE', default=True, cast=bool)
     )
 }
 
@@ -173,25 +175,22 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',   # global static
+    BASE_DIR / 'Adhar_app' / 'static',   # app static files
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # for production collectstatic
 
-
-# Default primary key field type
+# WhiteNoise configuration for static files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Media Files (Uploads)
+# Media Files (Uploads) - Using Supabase for media storage
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = BASE_DIR / 'media'
 
-
-
-
-
+# Supabase Configuration
 SUPABASE_URL = config("SUPABASE_URL")
 SUPABASE_KEY = config("SUPABASE_SERVICE_ROLE_KEY")
 SUPABASE_BUCKET = config("SUPABASE_BUCKET")
