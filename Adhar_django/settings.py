@@ -185,6 +185,13 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'  # for production collectstatic
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Media Files (Uploads)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / 'media'
 
+
+
+
+
+SUPABASE_URL = config("SUPABASE_URL")
+SUPABASE_KEY = config("SUPABASE_SERVICE_ROLE_KEY")
+SUPABASE_BUCKET = config("SUPABASE_BUCKET")

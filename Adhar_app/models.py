@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
-
+from Adhar_django.storage import SupabaseStorage 
 # Create your models here.
 
 class Destination(models.Model):
@@ -12,7 +12,7 @@ class Destination(models.Model):
     ]
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
-    image = models.ImageField(upload_to='destinations/')
+    image = models.ImageField(upload_to='destinations/',  storage=SupabaseStorage)
     description = models.TextField()
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='general')
     is_active = models.BooleanField(default=True)
@@ -30,7 +30,7 @@ class Destination(models.Model):
 class Package(models.Model):
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE, related_name='packages')
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='packages/')
+    image = models.ImageField(upload_to='packages/',  storage=SupabaseStorage)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     duration = models.CharField(max_length=50, help_text="e.g. 5 Days / 4 Nights")
     overview = models.TextField()
