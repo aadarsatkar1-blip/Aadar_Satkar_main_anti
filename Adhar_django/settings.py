@@ -194,3 +194,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SUPABASE_URL = config("SUPABASE_URL")
 SUPABASE_KEY = config("SUPABASE_SERVICE_ROLE_KEY")
 SUPABASE_BUCKET = config("SUPABASE_BUCKET")
+
+
+
+
+CSRF_TRUSTED_ORIGINS = ["https://*.railway.app"]
