@@ -57,4 +57,10 @@ urlpatterns = [
     
     # Generic Destination Detail (Must be last to avoid conflicts)
     path('<slug:slug>/', views.destination_detail, name='destination_detail'),
+
+    # Form Handlers
+    path('subscribe/', views.subscribe, name='subscribe'),
+    path('submit-enquiry/', views.submit_enquiry, name='submit_enquiry'),
+
+    
 ]

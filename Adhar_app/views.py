@@ -1,8 +1,14 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from .models import Destination
+from django.http import HttpResponse, JsonResponse
+from .models import Destination, Subscriber, Enquiry
+from django.conf import settings
+from supabase import create_client
+import threading
 
 # Create your views here.
+
+# Initialize Supabase client
+supabase = create_client(settings.SUPABASE_URL, settings.SUPABASE_KEY)
 
 # Home Page
 def home(request):
@@ -252,3 +258,91 @@ def instagram(request):
 def twitter(request):
     from django.shortcuts import redirect
     return redirect('https://twitter.com')
+
+# Form Handlers
+def subscribe(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if email:
+            try:
+                # 1. Store in Django DB (Regular flow)
+                Subscriber.objects.update_or_create(email=email)
+                
+                # 2. Store in Supabase directly via API (For redundancy and dashboard visibility)
+                # Using a background thread to prevent hanging the main request
+                def store_in_supabase(email_addr):
+                    try:
+                        # Try 'subscribers' table
+                        try:
+                            supabase.table("subscribers").upsert({"email": email_addr}).execute()
+                        except Exception as e:
+                            # Fallback to Django table name
+                            supabase.table("Adhar_app_subscriber").upsert({"email": email_addr}).execute()
+                    except Exception as e:
+                        print(f"Supabase Background Storage Warning: {e}")
+
+                threading.Thread(target=store_in_supabase, args=(email,)).start()
+                
+                return JsonResponse({'status': 'success', 'message': f'Thank you for subscribing with {email}!'})
+            except Exception as e:
+                return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
+
+def submit_enquiry(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        destination_name = request.POST.get('destination')
+        message = request.POST.get('message')
+        
+        # Optional fields from other potential forms
+        travel_date = request.POST.get('travel_date') 
+        budget = request.POST.get('budget')
+
+        if name and email and phone:
+            try:
+                # Try to find destination object if destination_name is provided
+                destination_obj = None
+                if destination_name:
+                    # Try exact match or slug match
+                    destination_obj = Destination.objects.filter(name__iexact=destination_name).first()
+                    if not destination_obj:
+                        destination_obj = Destination.objects.filter(slug__iexact=destination_name).first()
+
+                Enquiry.objects.create(
+                    name=name,
+                    email=email,
+                    phone=phone,
+                    destination=destination_obj,
+                    message=f"Destination: {destination_name}\n\n{message}" if not destination_obj else message,
+                    travel_date=travel_date if travel_date else None,
+                    budget=budget if budget else ''
+                )
+                
+                # Store in Supabase directly via API (For redundancy and dashboard visibility)
+                # Using a background thread to prevent hanging the main request
+                def store_enquiry_in_supabase():
+                    try:
+                        enquiry_data = {
+                            "name": name,
+                            "email": email,
+                            "phone": phone,
+                            "message": f"Destination: {destination_name}\n\n{message}" if not destination_obj else (message or ""),
+                            "travel_date": travel_date,
+                            "budget": budget or ""
+                        }
+                        # Try 'enquiries' table first
+                        try:
+                            supabase.table("enquiries").insert(enquiry_data).execute()
+                        except Exception:
+                            # Fallback to Django table name
+                            supabase.table("Adhar_app_enquiry").insert(enquiry_data).execute()
+                    except Exception as e:
+                        print(f"Supabase Enquiry Background Storage Warning: {e}")
+
+                threading.Thread(target=store_enquiry_in_supabase).start()
+                return JsonResponse({'status': 'success', 'message': 'Your enquiry has been submitted successfully!'})
+            except Exception as e:
+                return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)

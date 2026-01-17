@@ -202,7 +202,7 @@
             </div>
             {% comment %}
             <div class="dest-card">
-                <div class="dest-image lazy-bg" data-bg="{% static 'images/Kerala, India.jpg' %}">
+                <div class="dest-image lazy-bg" data-bg="{% static 'imagess/Kerala, India.jpg' %}">
                     <span class="dest-label">Kerala, India</span>
                 </div>
                 <div class="dest-info">
@@ -212,7 +212,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image lazy-bg" data-bg="{% static 'images/Turkey.jpg' %}">
+                <div class="dest-image lazy-bg" data-bg="{% static 'imagess/Turkey.jpg' %}">
                     <span class="dest-label">Turkey</span>
                 </div>
                 <div class="dest-info">
@@ -222,7 +222,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image lazy-bg" data-bg="{% static 'images/Thailand..jpg' %}">
+                <div class="dest-image lazy-bg" data-bg="{% static 'imagess/Thailand..jpg' %}">
                     <span class="dest-label">Thailand.</span>
                 </div>
                 <div class="dest-info">
@@ -232,7 +232,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image lazy-bg" data-bg="{% static 'images/Delhi, India.jpg' %}">
+                <div class="dest-image lazy-bg" data-bg="{% static 'imagess/Delhi, India.jpg' %}">
                     <span class="dest-label">Delhi, India</span>
                 </div>
                 <div class="dest-info">
@@ -242,7 +242,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image lazy-bg" data-bg="{% static 'images/Singapore.jpg' %}">
+                <div class="dest-image lazy-bg" data-bg="{% static 'imagess/Singapore.jpg' %}">
                     <span class="dest-label">Singapore</span>
                 </div>
                 <div class="dest-info">
@@ -252,7 +252,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image lazy-bg" data-bg="{% static 'images/Rishikesh.jpg' %}">
+                <div class="dest-image lazy-bg" data-bg="{% static 'imagess/Rishikesh.jpg' %}">
                     <span class="dest-label">Rishikesh</span>
                 </div>
                 <div class="dest-info">
@@ -303,7 +303,8 @@
                     <h4>Newsletter</h4>
                     <p>Get travel inspiration and exclusive deals</p>
 
-                    <form class="newsletter-form" id="subscribeForm">
+                    <form class="newsletter-form" id="subscribeForm" method="POST">
+                        {% csrf_token %}
                         <input type="email" id="subscriberEmail" name="email" placeholder="Your email" required>
                         <button type="submit">Subscribe</button>
                     </form>
@@ -350,7 +351,8 @@
                 <div class="modal-body">
                     <button id="back-to-itinerary-btn" class="btn-link">← Back</button>
                     <h3>Consultation for <span id="form-destination-name">Service</span></h3>
-                    <form id="trip-planning-form">
+                    <form id="trip-planning-form" method="POST">
+                        {% csrf_token %}
                         <input type="hidden" id="destination-input" name="destination">
                         <label>Patient Name</label><input type="text" name="name" required>
                         <label>Email</label><input type="email" name="email" required>

@@ -6,21 +6,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Germany Destinations - Aadar Satkar</title>
-            <meta name="description" content="Plan your perfect trip with Aadar Satkar. We offer customized tour packages, luxury travel planning, and unforgettable experiences in Maldives, Dubai, and more.">
+    <meta name="description"
+        content="Plan your perfect trip with Aadar Satkar. We offer customized tour packages, luxury travel planning, and unforgettable experiences in Maldives, Dubai, and more.">
     <meta name="keywords" content="travel, tour packages, holiday planning, Aadar Satkar, vacation, trip planner">
     <meta name="author" content="Aadar Satkar Team">
 
 
     <!-- 4. Favicon (Browser Tab Icon) -->
     <!-- Apni image ka path sahi lagana -->
-    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'imagess/favicon.png' %}">
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <style>
         /* Hero Section Specific to Europe */
         .europe-hero {
             height: 60vh;
             /* Updated Hero Image (Bavarian Alps) */
-            background-image: url("{% static 'images/germany.jpg' %}");
+            background-image: url("{% static 'imagess/germany.jpg' %}");
             background-size: cover;
             background-position: center;
             position: relative;
@@ -112,13 +113,13 @@
         <div class="container nav-container">
             <div class="logo">
                 <a href="{% url 'home' %}">
-                    <img src="{% static 'images/logo.jpg' %}" alt="Aadar Satkar Logo">
+                    <img src="{% static 'imagess/logo.jpg' %}" alt="Aadar Satkar Logo">
                 </a>
             </div>
-            
+
             <ul class="nav-menu">
                 <li><a href="{% url 'home' %}">Home</a></li>
-                
+
                 <li class="dropdown">
                     <a href="#destination" class="dropbtn">Destination </a>
                     <div class="dropdown-content">
@@ -127,8 +128,8 @@
                         <a href="{% url 'india' %}">India</a>
                         <a href="{% url 'view_all_destinations' %}">Explore All</a>
                     </div>
-                </li>        
-              
+                </li>
+
                 <li class="dropdown">
                     <a href="{% url 'home' %}" class="dropbtn">Holidays </a>
                     <div class="dropdown-content">
@@ -136,8 +137,8 @@
                         <a href="#asia">Asia</a>
                         <a href="#americas">The Americas</a>
                     </div>
-                </li> 
-              
+                </li>
+
                 <li class="dropdown">
                     <a href="#destination" class="dropbtn">India </a>
                     <div class="dropdown-content">
@@ -146,7 +147,7 @@
                         <a href="{% url 'india' %}">Goa</a>
                         <a href="{% url 'india' %}">Explore All</a>
                     </div>
-                </li>              
+                </li>
 
                 <li class="dropdown">
                     <a href="#destination" class="dropbtn">Extra </a>
@@ -155,12 +156,12 @@
                         <a href="#asia">Student's tour</a>
                         <a href="#americas">Medical tourism</a>
                     </div>
-                </li> 
-                
-                <li>
-                     <a href="#contact" class="dropbtn">Contact</a>
                 </li>
-                  
+
+                <li>
+                    <a href="#contact" class="dropbtn">Contact</a>
+                </li>
+
                 <li><a href="{% url 'plan_your_trip' %}" class="btn-primary">Plan Your Trip</a></li>
             </ul>
 
@@ -187,10 +188,9 @@
 
             <div class="dest-grid">
                 <div class="dest-card">
-                    <div class="dest-image"
-                        style="background-image: url('{% static 'images/Berlin.jpg' %}');">
+                    <div class="dest-image" style="background-image: url({% static 'imagess/Berlin.jpg' %});">
 
-                        
+
                         <span class="dest-label">Berlin</span>
                     </div>
                     <div class="dest-info">
@@ -200,8 +200,7 @@
                 </div>
 
                 <div class="dest-card">
-                    <div class="dest-image"
-                        style="background-image: url('{% static 'images/Munich.jpg' %}');">
+                    <div class="dest-image" style="background-image: url({% static 'imagess/Munich.jpg' %});">
                         <span class="dest-label">Munich</span>
                     </div>
                     <div class="dest-info">
@@ -211,8 +210,7 @@
                 </div>
 
                 <div class="dest-card">
-                    <div class="dest-image"
-                        style="background-image: url('{% static 'images/Hamburg.jpg' %}');">
+                    <div class="dest-image" style="background-image: url({% static 'imagess/Hamburg.jpg' %});">
                         <span class="dest-label">Hamburg</span>
                     </div>
                     <div class="dest-info">
@@ -222,8 +220,7 @@
                 </div>
 
                 <div class="dest-card">
-                    <div class="dest-image"
-                        style="background-image: url('{% static 'images/Bavaria.jpg' %}');">
+                    <div class="dest-image" style="background-image: url({% static 'imagess/Bavaria.jpg' %});">
                         <span class="dest-label">Bavaria</span>
                     </div>
                     <div class="dest-info">
@@ -233,8 +230,7 @@
                 </div>
 
                 <div class="dest-card">
-                    <div class="dest-image"
-                        style="background-image: url('{% static 'images/Cologne.jpg' %}');">
+                    <div class="dest-image" style="background-image: url({% static 'imagess/Cologne.jpg' %});">
                         <span class="dest-label">Cologne</span>
                     </div>
                     <div class="dest-info">
@@ -244,8 +240,7 @@
                 </div>
 
                 <div class="dest-card">
-                    <div class="dest-image"
-                        style="background-image: url('{% static 'images/Heidelberg.jpg' %}');">
+                    <div class="dest-image" style="background-image: url({% static 'imagess/Heidelberg.jpg' %});">
                         <span class="dest-label">Heidelberg</span>
                     </div>
                     <div class="dest-info">
@@ -255,8 +250,7 @@
                 </div>
 
                 <div class="dest-card">
-                    <div class="dest-image"
-                        style="background-image: url('{% static 'images/Frankfurt.jpg' %}');">
+                    <div class="dest-image" style="background-image: url({% static 'imagess/Frankfurt.jpg' %});">
                         <span class="dest-label">Frankfurt</span>
                     </div>
                     <div class="dest-info">
@@ -266,8 +260,7 @@
                 </div>
 
                 <div class="dest-card">
-                    <div class="dest-image"
-                        style="background-image: url('{% static 'images/Dresden.jpg' %}');">
+                    <div class="dest-image" style="background-image: url({% static 'imagess/Dresden.jpg' %});">
                         <span class="dest-label">Dresden</span>
                     </div>
                     <div class="dest-info">
@@ -277,8 +270,7 @@
                 </div>
 
                 <div class="dest-card">
-                    <div class="dest-image"
-                        style="background-image: url('{% static 'images/Black Forest.jpg' %}');">
+                    <div class="dest-image" style="background-image: url({% static 'imagess/Black Forest.jpg' %});">
                         <span class="dest-label">Black Forest</span>
                     </div>
                     <div class="dest-info">
@@ -291,76 +283,71 @@
         </div>
     </section>
 
-<!-- Footer -->
-<footer class="footer" id="contact">
-    <div class="container">
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
 
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>About Us</h4>
-                <ul>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Our Purpose</a></li>
-                    <li><a href="#">Careers</a></li>
-                </ul>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Our Purpose</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Travel Resources</h4>
+                    <ul>
+                        <li><a href="#">Trip Styles</a></li>
+                        <li><a href="#">Destinations</a></li>
+                        <li><a href="#">Travel Tips</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Booking Support</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Get travel inspiration and exclusive deals</p>
+
+                    <form class="newsletter-form" id="subscribeForm" method="POST">
+                        {% csrf_token %}
+                        <input type="email" id="subscriberEmail" name="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
             </div>
 
-            <div class="footer-col">
-                <h4>Travel Resources</h4>
-                <ul>
-                    <li><a href="#">Trip Styles</a></li>
-                    <li><a href="#">Destinations</a></li>
-                    <li><a href="#">Travel Tips</a></li>
-                    <li><a href="#">FAQs</a></li>
-                </ul>
-            </div>
+            <div class="footer-bottom">
 
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Booking Support</a></li>
-                    <li><a href="#">Feedback</a></li>
-                </ul>
-            </div>
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">Twitter</a>
+                </div>
 
-            <div class="footer-col">
-                <h4>Newsletter</h4>
-                <p>Get travel inspiration and exclusive deals</p>
+                <!-- Contact Buttons -->
+                <div class="contact-buttons">
+                    <a href="tel:+917023030002" class="contact-link">📱 +91 7023030002</a>
+                    <a href="mailto:aadarsatkar@gmail.com" class="contact-link">📧 Email</a>
+                </div>
 
-                <form class="newsletter-form" id="subscribeForm">
-                    <input 
-                        type="email"
-                        id="subscriberEmail"
-                        name="email"
-                        placeholder="Your email"
-                        required
-                    >
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-
-            <!-- Social Links -->
-            <div class="social-links">
-                <a href="#">Facebook</a>
-                <a href="#">Instagram</a>
-                <a href="#">Twitter</a>
-            </div>
-
-            <!-- Contact Buttons -->
-            <div class="contact-buttons">
-                <a href="tel:+917023030002" class="contact-link">📱 +91 7023030002</a>
-                <a href="mailto:aadarsatkar@gmail.com" class="contact-link">📧 Email</a>
             </div>
 
         </div>
-
-    </div>
-</footer>
+    </footer>
 
     <div id="itinerary-modal" class="modal">
         <div class="modal-content">
@@ -377,7 +364,7 @@
                 <div class="modal-body">
                     <h3>📅 Trip Itinerary</h3>
                     <div id="modal-timeline" class="timeline">
-                        </div>
+                    </div>
 
                     <div class="modal-footer">
                         <button id="customize-trip-btn" class="btn-primary-new">Customize This Trip</button>
@@ -390,7 +377,8 @@
                     <button id="back-to-itinerary-btn" class="btn-link">← Back to Itinerary</button>
                     <h3>Plan Your Trip to <span id="form-destination-name">Destination</span></h3>
 
-                    <form id="trip-planning-form">
+                    <form id="trip-planning-form" method="POST">
+                        {% csrf_token %}
                         <input type="hidden" id="destination-input" name="destination">
                         <label>Your Name</label>
                         <input type="text" name="name" required placeholder="John Doe">
@@ -416,7 +404,7 @@
     <script>
         emailjs.init("Awx8NRE5rPqxXJXvX"); 
     </script>
-    <script src="{% static 'scripts.js' %}"></script>           
+    <script src="{% static 'scripts.js' %}"></script>
 
 </body>
 

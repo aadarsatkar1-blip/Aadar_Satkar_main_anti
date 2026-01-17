@@ -145,7 +145,7 @@
     </nav>
 
     <section class="destination-hero lazy-bg"
-        data-bg="{% if destination.image %}{{ destination.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}">
+        data-bg="{% if destination.image %}{{ destination.image.url }}{% else %}{% static 'imagess/logo.jpg' %}{% endif %}">
         <div class="container">
             <h1>{{ destination.name }}</h1>
             <p>Explore the best of {{ destination.name }} with Aadar Satkar</p>
@@ -161,7 +161,7 @@
                 {% for city in sub_destinations %}
                 <a href="{% url 'destination_detail' slug=city.slug %}" class="dest-card">
                     <div class="dest-image lazy-bg"
-                        data-bg="{% if city.image %}{{ city.image.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}">
+                        data-bg="{% if city.image %}{{ city.image.url }}{% else %}{% static 'imagess/logo.jpg' %}{% endif %}">
                         <span class="dest-label">{{ city.name }}</span>
                     </div>
                     <div class="dest-info">
@@ -216,7 +216,8 @@
                     <h4>Newsletter</h4>
                     <p>Get travel inspiration and exclusive deals</p>
 
-                    <form class="newsletter-form" id="subscribeForm">
+                    <form class="newsletter-form" id="subscribeForm" method="POST">
+                        {% csrf_token %}
                         <input type="email" id="subscriberEmail" name="email" autocomplete="email"
                             placeholder="Your email" required>
                         <button type="submit">Subscribe</button>

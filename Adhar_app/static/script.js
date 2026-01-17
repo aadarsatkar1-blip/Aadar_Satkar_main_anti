@@ -101,6 +101,22 @@ if (document.readyState === 'loading') {
     initLazyLoading();
 }
 
+// Helper to get CSRF token from cookie
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 // Observe all cards for animation
 document.querySelectorAll('.diff-card, .dest-card, .testimonial-card').forEach(card => {
     card.style.opacity = '0';
@@ -109,34 +125,44 @@ document.querySelectorAll('.diff-card, .dest-card, .testimonial-card').forEach(c
     observer.observe(card);
 });
 
-// Newsletter Form Handling with EmailJS
-const newsletterForm = document.querySelector('.newsletter-form');
-
-if (newsletterForm) {
-    newsletterForm.addEventListener('submit', function (e) {
+// Newsletter Form Handling (Stores in Django DB)
+document.addEventListener('submit', function (e) {
+    if (e.target.classList.contains('newsletter-form')) {
         e.preventDefault();
-
-        const email = newsletterForm.querySelector('input[type="email"]').value;
+        const form = e.target;
+        const email = form.querySelector('input[type="email"]').value;
+        const csrfToken = getCookie('csrftoken') || form.querySelector('[name=csrfmiddlewaretoken]')?.value;
 
         if (!email) return;
 
-        // 💡 Send email to EmailJS
-        emailjs.send("service_69zwhft", "template_qdckahs", {
-            email: email
+        const formData = new FormData();
+        formData.append('email', email);
+
+        fetch('/subscribe/', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': csrfToken
+            }
         })
-            .then(() => {
-                alert(`Thank you for subscribing! We'll send updates to ${email}`);
-                newsletterForm.reset();
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert(`✅ Thank you for subscribing! Email ${email} has been saved.`);
+                    form.reset();
+                } else {
+                    throw new Error(data.message || 'Subscription failed');
+                }
             })
             .catch((error) => {
-                console.error("EmailJS Error:", error);
+                console.error("Subscription Error:", error);
                 alert("❌ Subscription failed. Please try again.");
             });
-    });
-}
+    }
+});
 
 
-//plan your trip form handling with EmailJS
+// Plan your trip form handling (Stores in Django DB)
 const tripForm = document.getElementById('tripForm');
 const formStatus = document.getElementById('formStatus');
 
@@ -145,6 +171,8 @@ if (tripForm && formStatus) {
         e.preventDefault();
 
         const submitBtn = tripForm.querySelector('button');
+        const csrfToken = getCookie('csrftoken') || tripForm.querySelector('[name=csrfmiddlewaretoken]')?.value;
+
         if (submitBtn) {
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
@@ -153,22 +181,24 @@ if (tripForm && formStatus) {
         const formData = new FormData(tripForm);
 
         try {
-            const response = await fetch('https://formspree.io/f/mrbjnnob', {
+            const response = await fetch('/submit-enquiry/', {
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'Accept': 'application/json'
+                    'X-CSRFToken': csrfToken
                 }
             });
 
-            if (response.ok) {
-                formStatus.innerHTML = `<p style="color: green;">✅ Request sent successfully!</p>`;
+            const result = await response.json();
+
+            if (response.ok && result.status === 'success') {
+                formStatus.innerHTML = `<p style="color: green;">✅ Request sent successfully! We have saved your enquiry.</p>`;
                 tripForm.reset();
             } else {
-                throw new Error('Failed');
+                throw new Error(result.message || 'Failed');
             }
         } catch (error) {
-            formStatus.innerHTML = `<p style="color: red;">❌ Error sending request</p>`;
+            formStatus.innerHTML = `<p style="color: red;">❌ Error sending request: ${error.message}</p>`;
         } finally {
             if (formStatus) formStatus.style.display = 'block';
             if (submitBtn) {
@@ -498,7 +528,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ========================================
-    // FORM SUBMISSION (Formspree)
+    // FORM SUBMISSION (Django DB)
     // ========================================
     if (form && modalFormStatus) {
         form.addEventListener('submit', async function (e) {
@@ -506,6 +536,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalText = submitBtn ? submitBtn.textContent : 'Submit Request';
+            const csrfToken = getCookie('csrftoken') || form.querySelector('[name=csrfmiddlewaretoken]')?.value;
 
             if (submitBtn) {
                 submitBtn.textContent = 'Sending...';
@@ -521,32 +552,34 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             try {
-                // Send to Formspree
-                const response = await fetch('https://formspree.io/f/mrbjnnob', {
+                // Send to Django Backend
+                const response = await fetch('/submit-enquiry/', {
                     method: 'POST',
                     body: formData,
                     headers: {
-                        'Accept': 'application/json'
+                        'X-CSRFToken': csrfToken
                     }
                 });
 
-                if (response.ok) {
+                const result = await response.json();
+
+                if (response.ok && result.status === 'success') {
                     // Success
                     modalFormStatus.className = 'success';
-                    modalFormStatus.innerHTML = '✅ Request sent successfully! We\'ll contact you within 24 hours.';
+                    modalFormStatus.innerHTML = '✅ Request sent successfully! Your enquiry has been saved.';
                     modalFormStatus.style.display = 'block';
                     form.reset();
 
                     // Auto-close modal after 3 seconds
                     setTimeout(closeModal, 3000);
                 } else {
-                    throw new Error('Submission failed');
+                    throw new Error(result.message || 'Submission failed');
                 }
             } catch (error) {
                 // Error handling
                 console.error('Form Error:', error);
                 modalFormStatus.className = 'error';
-                modalFormStatus.innerHTML = '❌ Error sending request. Please call us at <a href="tel:+917023030002" style="color: inherit; text-decoration: underline;">+91 7023030002</a>';
+                modalFormStatus.innerHTML = `❌ Error: ${error.message}. Please call us at <a href="tel:+917023030002" style="color: inherit; text-decoration: underline;">+91 7023030002</a>`;
                 modalFormStatus.style.display = 'block';
             } finally {
                 // Reset button

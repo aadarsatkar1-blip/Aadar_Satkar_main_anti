@@ -21,7 +21,7 @@
         .student-hero {
             height: 70vh;
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-            url('{% static "imagess/studen_tour_header.jpg" %}') no-repeat center center;
+            url('{% static "images/studen_tour_header.jpg" %}') no-repeat center center;
             background-size: cover;
             position: relative;
             display: flex;
@@ -234,7 +234,7 @@
             </div>
             {% comment %}
             <div class="dest-card">
-                <div class="dest-image" style="background-image: url('{% static 'images/History.jpg' %}');">
+                <div class="dest-image" style="background-image: url('{% static 'imagess/History.jpg' %}');">
                     <span class="dest-label">History</span>
                 </div>
                 <div class="dest-info">
@@ -245,7 +245,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image" style="background-image: url('{% static 'images/Science.jpg' %}');">
+                <div class="dest-image" style="background-image: url('{% static 'imagess/Science.jpg' %}');">
                     <span class="dest-label">Science</span>
                 </div>
                 <div class="dest-info">
@@ -255,7 +255,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image" style="background-image: url('{% static 'images/Adventure.jpg' %}');">
+                <div class="dest-image" style="background-image: url('{% static 'imagess/Adventure.jpg' %}');">
                     <span class="dest-label">Adventure</span>
                 </div>
                 <div class="dest-info">
@@ -265,7 +265,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image" style="background-image: url('{% static 'images/Industry.jpg' %}');">
+                <div class="dest-image" style="background-image: url('{% static 'imagess/Industry.jpg' %}');">
                     <span class="dest-label">Industry</span>
                 </div>
                 <div class="dest-info">
@@ -275,7 +275,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image" style="background-image: url('{% static 'images/Nature.jpg' %}');">
+                <div class="dest-image" style="background-image: url('{% static 'imagess/Nature.jpg' %}');">
                     <span class="dest-label">Nature</span>
                 </div>
                 <div class="dest-info">
@@ -285,7 +285,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image" style="background-image: url('{% static 'images/International.jpg' %}');">
+                <div class="dest-image" style="background-image: url('{% static 'imagess/International.jpg' %}');">
                     <span class="dest-label">International</span>
                 </div>
                 <div class="dest-info">
@@ -336,7 +336,8 @@
                     <h4>Newsletter</h4>
                     <p>Get travel inspiration and exclusive deals</p>
 
-                    <form class="newsletter-form" id="subscribeForm">
+                    <form class="newsletter-form" id="subscribeForm" method="POST">
+                        {% csrf_token %}
                         <input type="email" id="subscriberEmail" name="email" placeholder="Your email" required>
                         <button type="submit">Subscribe</button>
                     </form>
@@ -383,7 +384,8 @@
                 <div class="modal-body">
                     <button id="back-to-itinerary-btn" class="btn-link">← Back</button>
                     <h3>Inquire about <span id="form-destination-name">Trip</span></h3>
-                    <form id="trip-planning-form">
+                    <form id="trip-planning-form" method="POST">
+                        {% csrf_token %}
                         <input type="hidden" id="destination-input" name="destination">
                         <label>School/Institute Name</label>
                         <input type="text" name="name" required placeholder="Institute Name">

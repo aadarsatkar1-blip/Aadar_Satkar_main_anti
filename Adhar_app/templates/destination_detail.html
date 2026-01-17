@@ -114,7 +114,7 @@
                         <a href="{% url 'view_all_destinations' %}">Explore All</a>
                     </div>
                 </li>
-                
+
 
                 <li class="dropdown">
                     <a href="{% url 'home' %}" class="dropbtn">Holidays </a>
@@ -162,7 +162,7 @@
     </nav>
 
     <section class="destination-hero lazy-bg"
-        data-bg="{% if destination.image %}{{ destination.image.url }}{% else %}{% static 'images/germany.jpg' %}{% endif %}">
+        data-bg="{% if destination.image %}{{ destination.image.url }}{% else %}{% static 'imagess/germany.jpg' %}{% endif %}">
         <div class="europe-hero-content">
             <h1>{{ destination.name }}</h1>
             <p>{{ destination.description }}</p>
@@ -236,15 +236,10 @@
                     <h4>Newsletter</h4>
                     <p>Get travel inspiration and exclusive deals</p>
 
-                    <form class="newsletter-form" id="subscribeForm">
-                        <input 
-                            type="email"
-                            id="subscriberEmail"
-                            name="email"
-                            autocomplete="email"
-                            placeholder="Your email"
-                            required
-                        >
+                    <form class="newsletter-form" id="subscribeForm" method="POST">
+                        {% csrf_token %}
+                        <input type="email" id="subscriberEmail" name="email" autocomplete="email"
+                            placeholder="Your email" required>
                         <button type="submit">Subscribe</button>
                     </form>
                 </div>
@@ -294,7 +289,8 @@
                 <div class="modal-body">
                     <button id="back-to-itinerary-btn" class="btn-link">← Back</button>
                     <h3>Plan your trip to <span id="form-destination-name">Destination</span></h3>
-                    <form id="trip-planning-form">
+                    <form id="trip-planning-form" method="POST">
+                        {% csrf_token %}
                         <input type="hidden" id="destination-input" name="destination">
                         <label>Your Name</label>
                         <input type="text" name="name" required placeholder="Full Name">

@@ -177,7 +177,7 @@
                 {% for dest in destinations %}
                 <div class="dest-card" data-slug="{{ dest.slug }}">
                     <div class="dest-image"
-                        style="background-image: url('{% if dest.image %}{% if 'images/' in dest.image.name %}{% static dest.image.name %}{% else %}{{ dest.image.url }}{% endif %}{% endif %}');">
+                        style="background-image: url('{% if dest.image %}{{ dest.image.url }}{% else %}{% static 'imagess/Weddings.jpg' %}{% endif %}');">
                         <span class="dest-label">{{ dest.name }}</span>
                     </div>
                     <div class="dest-info">
@@ -191,7 +191,7 @@
             </div>
             {% comment %}
             <div class="dest-card">
-                <div class="dest-image lazy-bg" data-bg="{% static 'images/Rajasthan.jpg' %}">
+                <div class="dest-image lazy-bg" data-bg="{% static 'imagess/Rajasthan.jpg' %}">
                     <span class="dest-label">Rajasthan</span>
                 </div>
                 <div class="dest-info">
@@ -201,7 +201,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image lazy-bg" data-bg="{% static 'images/Goa.jpg' %}">
+                <div class="dest-image lazy-bg" data-bg="{% static 'imagess/Goa.jpg' %}">
                     <span class="dest-label">Goa</span>
                 </div>
                 <div class="dest-info">
@@ -211,7 +211,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image lazy-bg" data-bg="{% static 'images/Italy..jpg' %}">
+                <div class="dest-image lazy-bg" data-bg="{% static 'imagess/Italy..jpg' %}">
                     <span class="dest-label">Italy.</span>
                 </div>
                 <div class="dest-info">
@@ -221,7 +221,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image lazy-bg" data-bg="{% static 'images/Bali..jpg' %}">
+                <div class="dest-image lazy-bg" data-bg="{% static 'imagess/Bali..jpg' %}">
                     <span class="dest-label">Bali.</span>
                 </div>
                 <div class="dest-info">
@@ -231,7 +231,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image lazy-bg" data-bg="{% static 'images/Kerala..jpg' %}">
+                <div class="dest-image lazy-bg" data-bg="{% static 'imagess/Kerala..jpg' %}">
                     <span class="dest-label">Kerala.</span>
                 </div>
                 <div class="dest-info">
@@ -241,7 +241,7 @@
             </div>
 
             <div class="dest-card">
-                <div class="dest-image lazy-bg" data-bg="{% static 'images/Maldives..jpg' %}">
+                <div class="dest-image lazy-bg" data-bg="{% static 'imagess/Maldives..jpg' %}">
                     <span class="dest-label">Maldives.</span>
                 </div>
                 <div class="dest-info">
@@ -292,7 +292,8 @@
                     <h4>Newsletter</h4>
                     <p>Get travel inspiration and exclusive deals</p>
 
-                    <form class="newsletter-form" id="subscribeForm">
+                    <form class="newsletter-form" id="subscribeForm" method="POST">
+                        {% csrf_token %}
                         <input type="email" id="subscriberEmail" name="email" placeholder="Your email" required>
                         <button type="submit">Subscribe</button>
                     </form>
@@ -347,7 +348,8 @@
                     <button id="back-to-itinerary-btn" class="btn-link">← Back to Itinerary</button>
                     <h3>Plan Your Trip to <span id="form-destination-name">Destination</span></h3>
 
-                    <form id="trip-planning-form">
+                    <form id="trip-planning-form" method="POST">
+                        {% csrf_token %}
                         <input type="hidden" id="destination-input" name="destination">
                         <label>Your Name</label>
                         <input type="text" name="name" required placeholder="John Doe">

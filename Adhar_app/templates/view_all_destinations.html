@@ -161,7 +161,8 @@
                     <h4>Newsletter</h4>
                     <p>Get travel inspiration and exclusive deals</p>
 
-                    <form class="newsletter-form" id="subscribeForm">
+                    <form class="newsletter-form" id="subscribeForm" method="POST">
+                        {% csrf_token %}
                         <input type="email" id="subscriberEmail" name="email" placeholder="Your email" required>
                         <button type="submit">Subscribe</button>
                     </form>
