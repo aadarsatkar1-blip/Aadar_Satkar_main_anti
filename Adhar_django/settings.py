@@ -200,5 +200,5 @@ SUPABASE_BUCKET = config("SUPABASE_BUCKET")
 
 CSRF_TRUSTED_ORIGINS = [
     "https://*.railway.app",
-    "https://aadarsatkar.in"
+    "https://*.aadarsatkar.in"
 ]
